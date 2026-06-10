@@ -1,0 +1,211 @@
+import {
+    ArrowRight,
+    Droplets,
+    Hourglass,
+    Layers,
+    Paintbrush,
+    Sparkles,
+    Zap,
+} from 'lucide-react';
+import type { ComponentType } from 'react';
+import BrandLayout from '@/components/brands/brand-layout';
+import { Button } from '@/components/ui/button';
+
+interface Category {
+    icon: ComponentType<{ className?: string }>;
+    title: string;
+    body: string;
+}
+
+const categories: Category[] = [
+    {
+        icon: Paintbrush,
+        title: 'Eloxieren',
+        body: 'Mit unseren Eloxalprodukten lassen sich Kleinteile wie Werkzeuge, Hifi- oder Fahrradteile aus Aluminium farbig eloxieren. Durch elektrolytische Oxidation entsteht eine Schutzschicht, die sich färben lässt.',
+    },
+    {
+        icon: Zap,
+        title: 'Galvanisieren',
+        body: 'Mit unseren Galvanik-Sets und Elektrolyten selbst vergolden und versilbern: Stift-, Bad- oder Tampongalvanik mit Metallen wie Platin, Gold, Silber, Kupfer und Zink – für Schmuck, Werkstücke und mehr.',
+    },
+    {
+        icon: Layers,
+        title: 'Brünieren',
+        body: 'Unsere Brünierverfahren ermöglichen es, Objekte aus niedriglegiertem Stahl sowie Edelstahl und Aluminium mit einer edlen, schwarzen Brünierschicht zu versehen.',
+    },
+    {
+        icon: Hourglass,
+        title: 'Patinieren',
+        body: 'Erzeugen Sie auf Kupfer, Messing, Bronze oder Silber in kürzester Zeit edle Alterungseffekte, die auf natürlichem Weg Jahre dauern würden – ganz ohne großen Aufwand.',
+    },
+    {
+        icon: Sparkles,
+        title: 'Stromlos beschichten',
+        body: 'Buntmetalle ohne Zubehör vergolden oder versilbern, Zink mit Chromatierungen schützen und mit Leitlacken echte Metalloberflächen erzeugen – ganz ohne Stromquelle.',
+    },
+    {
+        icon: Droplets,
+        title: 'Vor- & Nachbehandlung',
+        body: 'Für eine erfolgreiche Beschichtung ist die saubere, gleichmäßige Vor- und Nachbehandlung essenziell. Je besser die Oberfläche vorbereitet ist, desto besser das Endergebnis.',
+    },
+];
+
+export default function Tifoo() {
+    return (
+        <BrandLayout
+            name="TIFOO"
+            field="Galvanik & Oberflächentechnik"
+            title="Tifoo – Metallveredelung DIY: Galvanik, Eloxieren, Brünieren & mehr"
+            description="Tifoo bietet Produkte für Oberflächenbeschichtung und Metallveredelung im Do-it-yourself-Verfahren: Galvanisieren, Eloxieren, Brünieren, Patinieren und mehr."
+            headerClass="bg-tifoo/90"
+            accentClass="text-tifoo-accent"
+            footer={{
+                brandName: 'Tifoo',
+                bgClass: 'bg-tifoo',
+                accentClass: 'text-tifoo-accent',
+                consultTitle: 'Produktberatung',
+                consultIntro:
+                    'Technischer Support und Bestellungen per Telefon und E-Mail:',
+                phone: '+49 941 378 472 00',
+                email: 'tifoo@marawe.de',
+                serviceLinks: [
+                    { label: 'Kontakt', href: '/#kontakt' },
+                    { label: 'Versand & Zahlung', href: '#' },
+                    { label: 'Widerrufsrecht', href: '#' },
+                    { label: 'AGB', href: '#' },
+                    { label: 'Cookie-Einstellungen', href: '#' },
+                ],
+                infoLinks: [
+                    { label: 'Full Service Lohnhersteller', href: '#' },
+                    { label: 'MARAWE-Gruppe', href: '/#ueber-uns' },
+                    { label: 'Jobs & Karriere', href: '/#karriere' },
+                    { label: 'Datenschutz', href: '#' },
+                    { label: 'Impressum', href: '#' },
+                ],
+            }}
+        >
+            <section className="relative bg-tifoo text-white">
+                <img
+                    src="https://images.unsplash.com/photo-1504917595217-d4dc5ebe6122?auto=format&fit=crop&w=1800&q=80"
+                    alt="Funkenflug bei der Metallbearbeitung"
+                    className="absolute inset-0 size-full object-cover opacity-25"
+                    loading="eager"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-tifoo via-tifoo/70 to-tifoo/40" />
+                <div className="relative mx-auto w-full max-w-7xl px-6 pt-40 pb-24 lg:px-8 lg:pb-32">
+                    <p className="mb-4 text-xs font-semibold tracking-[0.25em] text-tifoo-accent uppercase">
+                        Tifoo · Eine Marke der MARAWE GmbH &amp; Co. KG
+                    </p>
+                    <h1 className="max-w-3xl font-display text-4xl leading-[1.05] font-bold tracking-tight text-balance sm:text-6xl">
+                        Metallveredelung DIY: Galvanik, Eloxieren, Brünieren
+                        &amp; mehr!
+                    </h1>
+                    <p className="mt-6 max-w-2xl text-base text-white/80 sm:text-lg">
+                        Produkte für Oberflächenbeschichtung und
+                        Metallveredelung im Do-it-yourself-Verfahren – für alle,
+                        die Oberflächen selbst veredeln, verschönern oder
+                        beschichten wollen. Ohne industrielle Fertigungsprozesse
+                        oder teure Dienstleistungen.
+                    </p>
+                    <div className="mt-9 flex flex-wrap gap-4">
+                        <Button
+                            asChild
+                            size="lg"
+                            className="bg-tifoo-accent text-tifoo hover:bg-tifoo-accent/90"
+                        >
+                            <a href="#sortiment">
+                                Sortiment entdecken
+                                <ArrowRight data-icon="inline-end" />
+                            </a>
+                        </Button>
+                        <Button
+                            asChild
+                            size="lg"
+                            variant="outline"
+                            className="border-white/30 bg-transparent text-white hover:bg-white/10 hover:text-white"
+                        >
+                            <a
+                                href="https://www.tifoo.de/"
+                                target="_blank"
+                                rel="noopener noreferrer"
+                            >
+                                Zum Tifoo-Shop
+                            </a>
+                        </Button>
+                    </div>
+                </div>
+            </section>
+
+            <section id="sortiment" className="bg-background py-24 lg:py-32">
+                <div className="mx-auto w-full max-w-7xl px-6 lg:px-8">
+                    <div className="mb-14 max-w-2xl">
+                        <p className="mb-3 text-xs font-semibold tracking-[0.25em] text-tifoo uppercase dark:text-tifoo-accent">
+                            Unser Sortiment
+                        </p>
+                        <h2 className="font-display text-3xl font-bold tracking-tight text-balance sm:text-5xl">
+                            Tauchen Sie ein in die Welt der
+                            Oberflächenbeschichtung.
+                        </h2>
+                        <p className="mt-4 text-muted-foreground">
+                            Galvanik, Brünieren, Patinieren und Eloxieren für
+                            unterschiedlichste Erfahrungsstufen – für
+                            Gewerbekunden ebenso wie für Einsteiger, Bastler und
+                            Künstler.
+                        </p>
+                    </div>
+
+                    <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+                        {categories.map((category) => (
+                            <article
+                                key={category.title}
+                                className="group rounded-xl border bg-card p-6 transition-shadow hover:shadow-lg lg:p-8"
+                            >
+                                <span className="mb-5 flex size-12 items-center justify-center rounded-lg bg-tifoo text-tifoo-accent">
+                                    <category.icon
+                                        className="size-6"
+                                        aria-hidden
+                                    />
+                                </span>
+                                <h3 className="font-display text-xl font-bold tracking-tight">
+                                    {category.title}
+                                </h3>
+                                <p className="mt-2 text-sm leading-relaxed text-muted-foreground">
+                                    {category.body}
+                                </p>
+                            </article>
+                        ))}
+                    </div>
+                </div>
+            </section>
+
+            <section className="border-y-4 border-tifoo-accent bg-tifoo text-white">
+                <div className="mx-auto flex w-full max-w-7xl flex-col items-center gap-6 px-6 py-12 text-center sm:flex-row sm:text-left lg:px-8">
+                    <div className="flex-1">
+                        <h2 className="font-display text-2xl font-bold tracking-tight text-tifoo-accent sm:text-3xl">
+                            Perfekte Vor- und Nachbehandlung
+                        </h2>
+                        <p className="mt-1 text-sm text-white/85 sm:text-base">
+                            Für alle unsere Verfahren finden Sie im Shop die
+                            Kategorie „Stromlos beschichten" sowie passende
+                            Produkte zur Vor- und Nachbehandlung.
+                        </p>
+                    </div>
+                    <Button
+                        asChild
+                        size="lg"
+                        className="bg-tifoo-accent text-tifoo hover:bg-tifoo-accent/90"
+                    >
+                        <a
+                            href="https://www.tifoo.de/"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                        >
+                            Jetzt im Shop stöbern
+                            <ArrowRight data-icon="inline-end" />
+                        </a>
+                    </Button>
+                </div>
+            </section>
+        </BrandLayout>
+    );
+}

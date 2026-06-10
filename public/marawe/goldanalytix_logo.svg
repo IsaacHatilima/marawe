@@ -1,0 +1,27 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 567 392" role="img" aria-label="Goldanalytix logo">
+  <g transform="translate(129.438865 0.000000) scale(1.711790)">
+<!-- Top arrow / pyramid -->
+  <polygon points="90,4 7,123 90,64" fill="#FFD84A"/>
+  <polygon points="90,4 173,123 90,64" fill="#FFCF12"/>
+
+  <!-- Center dark chevron -->
+  <polygon points="7,135 90,70 173,135 173,150 90,102 7,150" fill="#2F3335"/>
+  <polygon points="90,70 173,135 173,150 90,102" fill="#151719" opacity="0.95"/>
+  <polygon points="7,135 90,70 90,102 7,150" fill="#4B5051"/>
+
+  <!-- White separator lines -->
+  <polygon points="7,123 90,64 173,123 173,130 90,70 7,130" fill="#ffffff"/>
+  <polygon points="7,150 90,102 173,150 173,158 90,111 7,158" fill="#ffffff"/>
+
+  <!-- Bottom gold chevron -->
+  <polygon points="7,158 90,111 173,158 173,178 90,131 7,178" fill="#FFD84A"/>
+  <polygon points="90,111 173,158 173,178 90,131" fill="#FFCF12"/>
+  <polygon points="7,158 90,111 90,131 7,178" fill="#FFE066"/>
+
+  <!-- Wordmark -->
+  <text x="90" y="218" text-anchor="middle"
+        font-family="Arial Narrow, Helvetica Condensed, Roboto Condensed, Arial, sans-serif"
+        font-size="31" font-stretch="condensed" letter-spacing="-1.4"
+        fill="#111111">GOLDANALYTIX</text>
+  </g>
+</svg>
