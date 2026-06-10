@@ -1,11 +1,5 @@
 import Autoplay from 'embla-carousel-autoplay';
-import {
-    Facebook,
-    Instagram,
-    Youtube,
-    ArrowRight,
-    Home,
-} from 'lucide-react';
+import { Facebook, Instagram, Youtube, ArrowRight, Home } from 'lucide-react';
 import { useEffect, useState } from 'react';
 import BrandLayout from '@/components/brands/brand-layout';
 import { tobolinTopnavOptions } from '@/components/topnav/topnav-options';
@@ -150,22 +144,22 @@ export default function Tobolin() {
                 consultTitle: 'Persönliche Beratung',
                 consultIntro: 'per Telefon, E-Mail & WhatsApp:',
                 phone: '+49 (0)941 37847200',
-                whatsapp: "+49 (0)159 01366514",
+                whatsapp: '+49 (0)159 01366514',
                 socials: [
                     {
                         icon: Facebook,
-                        label: "Facebook",
-                        href: "https://www.facebook.com/TobolinBauChemie/",
+                        label: 'Facebook',
+                        href: 'https://www.facebook.com/TobolinBauChemie/',
                     },
                     {
                         icon: Instagram,
-                        label: "Instagram",
-                        href: "https://www.instagram.com/tobolin_smarte_bauprodukte/",
+                        label: 'Instagram',
+                        href: 'https://www.instagram.com/tobolin_smarte_bauprodukte/',
                     },
                     {
                         icon: Youtube,
-                        label: "YouTube",
-                        href: "https://www.youtube.com/channel/UCnGGnqiHOGPkKejIb9s5k7Q",
+                        label: 'YouTube',
+                        href: 'https://www.youtube.com/channel/UCnGGnqiHOGPkKejIb9s5k7Q',
                     },
                 ],
                 contactFormUrl: 'https://www.tobolin.de/service/kontakt/',
@@ -374,24 +368,27 @@ export default function Tobolin() {
                             loading="lazy"
                         />
                         <div className="p-8">
-                        <p className="mb-3 text-xs font-semibold tracking-[0.25em] text-tobolin uppercase dark:text-tobolin-accent">
-                            Wer steckt hinter TOBOLIN?
-                        </p>
-                        <h2 className="font-display text-3xl font-bold tracking-tight text-balance">
-                            Zuverlässiger Feuchteschutz aus Deutschland.
-                        </h2>
-                        <p className="mt-5 text-muted-foreground">
-                            Als Marke der MARAWE GmbH &amp; Co. KG entwickelt
-                            und vertreibt Tobolin hochwertige Lösungen zur
-                            Abdichtung von Mauerwerk. Der Schwerpunkt liegt auf
-                            modernen Horizontalsperren-Systemen gegen kapillar
-                            aufsteigende Feuchtigkeit sowie Sanierungslösungen
-                            bei Feuchtigkeits- und Kondensationsschäden.
-                        </p>
-                        <p className="mt-4 text-muted-foreground">
-                            Mit über 10 Jahren Erfahrung steht Tobolin für
-                            Qualität, Innovation und persönlichen Kundenservice.
-                        </p>
+                            <p className="mb-3 text-xs font-semibold tracking-[0.25em] text-tobolin uppercase dark:text-tobolin-accent">
+                                Wer steckt hinter TOBOLIN?
+                            </p>
+                            <h2 className="font-display text-3xl font-bold tracking-tight text-balance">
+                                Zuverlässiger Feuchteschutz aus Deutschland.
+                            </h2>
+                            <p className="mt-5 text-muted-foreground">
+                                Als Marke der MARAWE GmbH &amp; Co. KG
+                                entwickelt und vertreibt Tobolin hochwertige
+                                Lösungen zur Abdichtung von Mauerwerk. Der
+                                Schwerpunkt liegt auf modernen
+                                Horizontalsperren-Systemen gegen kapillar
+                                aufsteigende Feuchtigkeit sowie
+                                Sanierungslösungen bei Feuchtigkeits- und
+                                Kondensationsschäden.
+                            </p>
+                            <p className="mt-4 text-muted-foreground">
+                                Mit über 10 Jahren Erfahrung steht Tobolin für
+                                Qualität, Innovation und persönlichen
+                                Kundenservice.
+                            </p>
                         </div>
                     </div>
                 </div>
@@ -424,12 +421,12 @@ export default function Tobolin() {
                                     loading="lazy"
                                 />
                                 <div className="p-6 lg:p-8">
-                                <h3 className="font-display text-lg font-bold tracking-tight">
-                                    {promise.title}
-                                </h3>
-                                <p className="mt-2 text-sm leading-relaxed text-white/75">
-                                    {promise.body}
-                                </p>
+                                    <h3 className="font-display text-lg font-bold tracking-tight">
+                                        {promise.title}
+                                    </h3>
+                                    <p className="mt-2 text-sm leading-relaxed text-white/75">
+                                        {promise.body}
+                                    </p>
                                 </div>
                             </article>
                         ))}

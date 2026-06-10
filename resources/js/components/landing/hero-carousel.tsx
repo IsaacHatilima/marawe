@@ -50,7 +50,7 @@ export default function HeroCarousel() {
                                 <img
                                     src={slide.image}
                                     alt={slide.imageAlt}
-                                    className="absolute inset-0 size-full "
+                                    className="absolute inset-0 size-full"
                                     loading="eager"
                                 />
                                 <div className="absolute inset-0 bg-gradient-to-t from-ink via-ink/60 to-ink/20" />

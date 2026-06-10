@@ -28,23 +28,23 @@ export interface SocialLink {
 export const marawSocialLinks: SocialLink[] = [
     {
         icon: Facebook,
-        label: "Facebook",
-        href: "https://www.facebook.com/tifoo.galvanik/",
+        label: 'Facebook',
+        href: 'https://www.facebook.com/tifoo.galvanik/',
     },
     {
         icon: Instagram,
-        label: "Instagram",
-        href: "https://www.instagram.com/tifoogalvanik/",
+        label: 'Instagram',
+        href: 'https://www.instagram.com/tifoogalvanik/',
     },
     {
         icon: PinterestIcon,
-        label: "Pinterest",
-        href: "https://de.pinterest.com/tifoogalvanik/",
+        label: 'Pinterest',
+        href: 'https://de.pinterest.com/tifoogalvanik/',
     },
     {
         icon: Youtube,
-        label: "YouTube",
-        href: "https://www.youtube.com/user/TifooTech",
+        label: 'YouTube',
+        href: 'https://www.youtube.com/user/TifooTech',
     },
 ];
 

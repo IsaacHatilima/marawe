@@ -207,8 +207,7 @@ export default function Cart() {
                                                 Zusammenfassung
                                             </h2>
                                             <p className="text-sm text-muted-foreground">
-                                                {itemCount} Artikel im
-                                                Warenkorb
+                                                {itemCount} Artikel im Warenkorb
                                             </p>
                                         </div>
                                     </div>
@@ -282,9 +281,8 @@ export default function Cart() {
                             </DialogTitle>
                             <DialogDescription>
                                 Vielen Dank! Ihre Bestellung über {subtotal}{' '}
-                                wurde erfolgreich aufgegeben. Dies ist eine
-                                Demo – es wurde keine echte Bestellung
-                                ausgelöst.
+                                wurde erfolgreich aufgegeben. Dies ist eine Demo
+                                – es wurde keine echte Bestellung ausgelöst.
                             </DialogDescription>
                         </DialogHeader>
                         <DialogFooter>

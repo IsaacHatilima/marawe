@@ -192,9 +192,7 @@ export default function ProductsIndex({
                                         <button
                                             key={pageNumber}
                                             type="button"
-                                            onClick={() =>
-                                                goToPage(pageNumber)
-                                            }
+                                            onClick={() => goToPage(pageNumber)}
                                             aria-label={`Seite ${pageNumber}`}
                                             aria-current={
                                                 pageNumber === currentPage

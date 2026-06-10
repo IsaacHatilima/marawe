@@ -34,7 +34,10 @@ export default function CareerSection() {
                                 'Moderner Arbeitsplatz am Standort Regensburg',
                                 'Vielfältige Aufgaben zwischen Labor, Lager und Online-Handel',
                             ].map((item) => (
-                                <li key={item} className="flex items-start gap-3">
+                                <li
+                                    key={item}
+                                    className="flex items-start gap-3"
+                                >
                                     <span className="mt-1.5 size-1.5 shrink-0 rounded-full bg-brand" />
                                     <span>{item}</span>
                                 </li>

@@ -21,7 +21,12 @@ interface ProductsShowProps {
     similarProducts: StorefrontProduct[];
 }
 
-const tabs = ['Beschreibung', 'Downloads', 'Produktsicherheit', 'Bewertungen'] as const;
+const tabs = [
+    'Beschreibung',
+    'Downloads',
+    'Produktsicherheit',
+    'Bewertungen',
+] as const;
 const relatedTabs = ['Zubehör', 'Ähnliche Produkte'] as const;
 
 type ProductTab = (typeof tabs)[number];
@@ -250,7 +255,9 @@ export default function ProductsShow({
                                     className="h-10 bg-brand text-white hover:bg-brand-soft"
                                 >
                                     <ShoppingCart data-icon="inline-start" />
-                                    {justAdded ? 'Hinzugefügt' : 'In den Warenkorb'}
+                                    {justAdded
+                                        ? 'Hinzugefügt'
+                                        : 'In den Warenkorb'}
                                 </Button>
                                 <div className="hidden sm:block" />
                                 <Button

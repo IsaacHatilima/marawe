@@ -154,7 +154,8 @@ export default function Tifoo() {
                             DIY bis Gewerbe
                         </p>
                         <p className="mt-3 font-display text-2xl font-bold tracking-tight">
-                            Zuhause selbst beschichten – egal ob Lieblingsstück oder Arbeitsmaterial!
+                            Zuhause selbst beschichten – egal ob Lieblingsstück
+                            oder Arbeitsmaterial!
                         </p>
                         <dl className="mt-6 grid grid-cols-3 gap-3 text-center">
                             {['6 Verfahren', '4 Sprachen', 'ab 200 € frei'].map(
@@ -197,7 +198,8 @@ export default function Tifoo() {
                             Unser Sortiment
                         </p>
                         <h2 className="font-display text-3xl font-bold tracking-tight text-balance sm:text-5xl">
-                            Tauchen Sie jetzt ein in die spannende Welt der Oberflächenbeschichtung!
+                            Tauchen Sie jetzt ein in die spannende Welt der
+                            Oberflächenbeschichtung!
                         </h2>
                         <p className="mt-4 text-muted-foreground">
                             Galvanik, Brünieren, Patinieren und Eloxieren für
@@ -259,8 +261,8 @@ export default function Tifoo() {
                             Do-It-Yourself-Verfahren für alle diejenigen zur
                             Verfügung zu stellen, die Oberflächen veredeln oder
                             beschichten wollen. Diese speziellen Verfahren zur
-                            Oberflächenbehandlung werden üblicherweise nur
-                            durch industrielle Fertigungsprozesse oder
+                            Oberflächenbehandlung werden üblicherweise nur durch
+                            industrielle Fertigungsprozesse oder
                             Dienstleistungen ermöglicht – ein Umstand, an dem
                             wir etwas ändern wollen.
                         </p>
@@ -281,7 +283,10 @@ export default function Tifoo() {
                             Perfekte Vor- und Nachbehandlung
                         </h2>
                         <p className="mt-1 text-sm text-white/85 sm:text-base">
-                            Für einfache, schnelle und dekorative Ergebnisse sorgt unsere Kategorie „Stromlos Beschichten“ – mit passenden Produkten zur Vor- und Nachbehandlung im Shop.
+                            Für einfache, schnelle und dekorative Ergebnisse
+                            sorgt unsere Kategorie „Stromlos Beschichten“ – mit
+                            passenden Produkten zur Vor- und Nachbehandlung im
+                            Shop.
                         </p>
                     </div>
                     <Button
