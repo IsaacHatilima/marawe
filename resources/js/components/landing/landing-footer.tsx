@@ -111,6 +111,21 @@ export default function LandingFooter() {
             </h2>
 
             <div className="relative mx-auto w-full max-w-7xl px-6 py-16 lg:px-8">
+                <motion.div
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.5 }}
+                    className="mb-10"
+                >
+                    <span className="inline-flex h-12 items-center rounded-md bg-white px-3 py-2">
+                        <img
+                            src="/marawe/marawe_logo.jpg"
+                            alt="MARAWE GmbH & Co. KG Logo"
+                            className="h-full w-auto object-contain"
+                        />
+                    </span>
+                </motion.div>
                 <div className="grid gap-10 md:grid-cols-2 lg:grid-cols-[1fr_0.8fr_1.1fr_1.3fr]">
                     <FooterColumn title="Service Hotline" delay={0}>
                         <p className="text-sm text-white/70">

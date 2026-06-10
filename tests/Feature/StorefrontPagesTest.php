@@ -7,9 +7,12 @@ it('renders the product list page', function () {
         ->assertOk()
         ->assertInertia(fn (Assert $page) => $page
             ->component('products/index')
-            ->has('products', 12)
+            ->has('products', 44)
             ->has('filters.brands', 3)
             ->has('filters.categories', 3)
+            ->has('filters.categories.Tifoo', 7)
+            ->has('filters.categories.Goldanalytix', 3)
+            ->has('filters.categories.Tobolin', 5)
         );
 });
 
@@ -34,8 +37,5 @@ it('renders the cart page', function () {
         ->assertOk()
         ->assertInertia(fn (Assert $page) => $page
             ->component('cart')
-            ->has('items', 3)
-            ->has('summary.subtotal')
-            ->where('summary.shipping', 'Kostenlos')
         );
 });

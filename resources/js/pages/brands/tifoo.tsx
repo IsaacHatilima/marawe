@@ -75,6 +75,7 @@ export default function Tifoo() {
             topnav={tifooTopnavOptions}
             footer={{
                 brandName: 'Tifoo',
+                logo: '/tifoo/tifoo_logo.svg',
                 bgClass: 'bg-tifoo',
                 accentClass: 'text-tifoo-accent',
                 consultTitle: 'Produktberatung',
@@ -100,7 +101,7 @@ export default function Tifoo() {
         >
             <section className="relative bg-tifoo text-white">
                 <img
-                    src="/marawe/marawe_tifoo.jpg"
+                    src="https://www.tifoo.de/media/70/04/8b/1684693866/galvanisieren-badgalvanik-silberelektrolyt.webp"
                     alt="Tifoo Oberflächenveredelung und Metallbearbeitung"
                     className="absolute inset-0 size-full object-cover opacity-35"
                     loading="eager"
@@ -148,7 +149,7 @@ export default function Tifoo() {
                             </Button>
                         </div>
                     </div>
-                    <div className="rounded-lg border border-white/15 bg-white/10 p-5 shadow-2xl backdrop-blur-md">
+                    <div className="rounded-xl border border-white/15 bg-white/10 p-5 shadow-float backdrop-blur-md">
                         <p className="text-xs font-semibold tracking-[0.2em] text-tifoo-accent uppercase">
                             DIY bis Gewerbe
                         </p>
@@ -210,7 +211,7 @@ export default function Tifoo() {
                         {categories.map((category) => (
                             <article
                                 key={category.title}
-                                className="group overflow-hidden rounded-lg border bg-card transition-shadow hover:shadow-xl"
+                                className="group overflow-hidden rounded-xl border border-border/80 bg-card transition-shadow hover:shadow-float"
                             >
                                 <div className="relative aspect-[4/3] overflow-hidden">
                                     <img
@@ -220,7 +221,7 @@ export default function Tifoo() {
                                         loading="lazy"
                                     />
                                     <div className="absolute inset-0 bg-gradient-to-t from-tifoo/70 to-transparent" />
-                                    <span className="absolute bottom-4 left-4 flex size-11 items-center justify-center rounded-md bg-tifoo text-tifoo-accent shadow-lg">
+                                    <span className="absolute bottom-4 left-4 flex size-11 items-center justify-center rounded-md bg-tifoo text-tifoo-accent shadow-float">
                                         <category.icon
                                             className="size-5"
                                             aria-hidden

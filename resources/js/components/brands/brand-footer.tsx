@@ -16,6 +16,7 @@ export interface FooterLink {
 
 export interface BrandFooterConfig {
     brandName: string;
+    logo?: string;
     bgClass: string;
     accentClass: string;
     consultTitle: string;
@@ -30,7 +31,22 @@ export interface BrandFooterConfig {
     showNewsletter?: boolean;
 }
 
-const paymentMethods = ['PayPal', 'Visa', 'Mastercard', 'Klarna', 'Vorkasse'];
+interface PaymentBadge {
+    name: string;
+    src?: string;
+    imgClass?: string;
+}
+
+const paymentBadges: PaymentBadge[] = [
+    { name: 'PayPal', src: '/footer/paypal-3.svg' },
+    { name: 'Rechnung' },
+    { name: 'Mastercard', src: '/footer/mastercard.svg', imgClass: 'h-8' },
+    { name: 'Visa', src: '/footer/visa-logo.svg', imgClass: 'h-7' },
+    { name: 'SEPA', src: '/footer/sepa.svg', imgClass: 'h-9 scale-[1.7]' },
+    { name: 'Vorkasse' },
+    { name: 'Nachnahme' },
+    { name: 'DHL', src: '/footer/dhl.svg' },
+];
 
 function NewsletterForm({ accentClass }: { accentClass: string }) {
     const [isSubscribed, setIsSubscribed] = useState(false);
@@ -107,6 +123,7 @@ function NewsletterForm({ accentClass }: { accentClass: string }) {
 
 export default function BrandFooter({
     brandName,
+    logo,
     bgClass,
     accentClass,
     consultTitle,
@@ -126,6 +143,17 @@ export default function BrandFooter({
             className={cn('border-t border-white/10 text-white', bgClass)}
         >
             <div className="mx-auto w-full max-w-7xl px-6 py-16 lg:px-8">
+                {logo && (
+                    <div className="mb-10">
+                        <span className="inline-flex h-12 items-center rounded-md bg-white px-2 py-1.5">
+                            <img
+                                src={logo}
+                                alt={`${brandName} Logo`}
+                                className="h-full w-auto object-contain"
+                            />
+                        </span>
+                    </div>
+                )}
                 <div
                     className={cn(
                         'grid gap-10 md:grid-cols-2',
@@ -259,18 +287,29 @@ export default function BrandFooter({
                     >
                         Zahlung &amp; Versand
                     </h3>
-                    <div className="flex flex-wrap gap-2">
-                        {paymentMethods.map((method) => (
+                    <div className="flex flex-wrap items-center gap-2">
+                        {paymentBadges.map((badge) => (
                             <span
-                                key={method}
-                                className="rounded-md border border-white/20 bg-white/5 px-3 py-1 text-xs font-semibold text-white/80"
+                                key={badge.name}
+                                className="flex h-9 items-center overflow-hidden rounded-md bg-white px-2.5"
                             >
-                                {method}
+                                {badge.src ? (
+                                    <img
+                                        src={badge.src}
+                                        alt={badge.name}
+                                        loading="lazy"
+                                        className={cn(
+                                            'h-5 w-auto object-contain',
+                                            badge.imgClass,
+                                        )}
+                                    />
+                                ) : (
+                                    <span className="text-[11px] font-bold tracking-wide text-ink uppercase">
+                                        {badge.name}
+                                    </span>
+                                )}
                             </span>
                         ))}
-                        <span className="rounded-md border border-white/20 bg-white/5 px-3 py-1 text-xs font-semibold text-white/80">
-                            DHL
-                        </span>
                     </div>
                 </div>
 
@@ -297,7 +336,7 @@ export default function BrandFooter({
                         <p className="mt-1">
                             Copyright © {new Date().getFullYear()} {brandName} –
                             eine Marke der MARAWE GmbH &amp; Co. KG. Alle Rechte
-                            vorbehalten. · Fotos: Unsplash (Platzhalter)
+                            vorbehalten.
                         </p>
                     </div>
                 </div>

@@ -1,4 +1,4 @@
-import { Head, Link } from '@inertiajs/react';
+import { Head, Link, router } from '@inertiajs/react';
 import {
     ChevronLeft,
     ChevronRight,
@@ -8,8 +8,10 @@ import {
     ShoppingCart,
 } from 'lucide-react';
 import { useState } from 'react';
+import { getBrandAccent } from '@/components/storefront/brand-accents';
 import StorefrontHeader from '@/components/storefront/storefront-header';
 import { Button } from '@/components/ui/button';
+import { useCart } from '@/hooks/use-cart';
 import { cart } from '@/routes';
 import { index as productsIndex, show as productShow } from '@/routes/products';
 import type { StorefrontProduct } from '@/types/storefront';
@@ -19,8 +21,8 @@ interface ProductsShowProps {
     similarProducts: StorefrontProduct[];
 }
 
-const tabs = ['Description', 'Downloads', 'Product safety', 'Reviews'] as const;
-const relatedTabs = ['Accessories', 'Similar Products'] as const;
+const tabs = ['Beschreibung', 'Downloads', 'Produktsicherheit', 'Bewertungen'] as const;
+const relatedTabs = ['Zubehör', 'Ähnliche Produkte'] as const;
 
 type ProductTab = (typeof tabs)[number];
 type RelatedTab = (typeof relatedTabs)[number];
@@ -49,10 +51,24 @@ export default function ProductsShow({
     similarProducts,
 }: ProductsShowProps) {
     const [activeImageIndex, setActiveImageIndex] = useState(0);
-    const [activeTab, setActiveTab] = useState<ProductTab>('Description');
+    const [activeTab, setActiveTab] = useState<ProductTab>('Beschreibung');
     const [activeRelatedTab, setActiveRelatedTab] =
-        useState<RelatedTab>('Similar Products');
+        useState<RelatedTab>('Ähnliche Produkte');
     const [quantity, setQuantity] = useState(1);
+    const accent = getBrandAccent(product.brand);
+    const { addToCart } = useCart();
+    const [justAdded, setJustAdded] = useState(false);
+
+    const handleAddToCart = () => {
+        addToCart(product, quantity);
+        setJustAdded(true);
+        setTimeout(() => setJustAdded(false), 1500);
+    };
+
+    const handleCheckout = () => {
+        addToCart(product, quantity);
+        router.visit(cart());
+    };
 
     const galleryImages = [
         product.image,
@@ -64,7 +80,7 @@ export default function ProductsShow({
         .filter((similarProduct) => similarProduct.badge === 'Zubehör')
         .slice(0, 2);
     const visibleRelatedProducts =
-        activeRelatedTab === 'Accessories'
+        activeRelatedTab === 'Zubehör'
             ? accessoryProducts.length > 0
                 ? accessoryProducts
                 : similarProducts.slice(0, 2)
@@ -112,10 +128,15 @@ export default function ProductsShow({
                         href={productsIndex()}
                         className="mb-6 inline-flex text-sm font-medium text-muted-foreground transition-colors hover:text-foreground"
                     >
-                        Back to products
+                        Zurück zur Produktliste
                     </Link>
 
-                    <h1 className="font-display text-3xl font-bold tracking-tight text-foreground">
+                    <p
+                        className={`text-xs font-semibold tracking-[0.25em] uppercase ${accent.eyebrow}`}
+                    >
+                        {product.brand} · {product.category}
+                    </p>
+                    <h1 className="mt-2 font-display text-3xl font-bold tracking-tight text-foreground">
                         {product.name}
                     </h1>
 
@@ -129,12 +150,12 @@ export default function ProductsShow({
                                         onClick={() =>
                                             setActiveImageIndex(index)
                                         }
-                                        className={`size-12 overflow-hidden rounded-none border bg-white p-1 transition-colors hover:border-foreground ${
+                                        className={`size-12 overflow-hidden rounded-md border bg-white p-1 transition-colors hover:border-foreground ${
                                             activeImageIndex === index
                                                 ? 'border-foreground'
                                                 : 'border-border'
                                         }`}
-                                        aria-label={`View product image ${index + 1}`}
+                                        aria-label={`Produktbild ${index + 1} anzeigen`}
                                         aria-pressed={
                                             activeImageIndex === index
                                         }
@@ -150,10 +171,10 @@ export default function ProductsShow({
                             </div>
 
                             <div className="order-1 sm:order-2">
-                                <div className="relative flex aspect-[16/9] items-center justify-center bg-white">
+                                <div className="relative flex aspect-[16/9] items-center justify-center overflow-hidden rounded-xl border border-border/60 bg-white">
                                     <button
                                         type="button"
-                                        aria-label="Previous image"
+                                        aria-label="Vorheriges Bild"
                                         onClick={showPreviousImage}
                                         className="absolute left-0 z-10 flex size-9 items-center justify-center text-muted-foreground hover:text-foreground"
                                     >
@@ -166,7 +187,7 @@ export default function ProductsShow({
                                     />
                                     <button
                                         type="button"
-                                        aria-label="Next image"
+                                        aria-label="Nächstes Bild"
                                         onClick={showNextImage}
                                         className="absolute right-0 z-10 flex size-9 items-center justify-center text-muted-foreground hover:text-foreground"
                                     >
@@ -181,8 +202,8 @@ export default function ProductsShow({
                                             onClick={() =>
                                                 setActiveImageIndex(index)
                                             }
-                                            aria-label={`View product image ${index + 1}`}
-                                            className={`size-3 rounded-full border border-foreground ${activeImageIndex === index ? 'bg-foreground' : 'bg-muted-foreground'}`}
+                                            aria-label={`Produktbild ${index + 1} anzeigen`}
+                                            className={`size-2.5 rounded-full transition-colors ${activeImageIndex === index ? 'bg-foreground' : 'bg-border hover:bg-muted-foreground'}`}
                                         />
                                     ))}
                                 </div>
@@ -194,21 +215,21 @@ export default function ProductsShow({
                                 {product.price}
                             </p>
                             <p className="mt-3 text-xs text-muted-foreground">
-                                Prices incl. VAT plus shipping costs
+                                Preise inkl. MwSt. zzgl. Versandkosten
                             </p>
                             <p className="mt-6 flex items-center gap-2 text-sm text-muted-foreground">
                                 <span className="size-2 rounded-full bg-emerald-600" />
-                                Available, delivery time:{' '}
-                                {product.deliveryTime ?? '2-5 days'}
+                                Verfügbar, Lieferzeit:{' '}
+                                {product.deliveryTime ?? '2–5 Tage'}
                             </p>
 
                             <div className="mt-6 grid gap-2 sm:grid-cols-[6.5rem_1fr]">
-                                <div className="grid h-10 grid-cols-3 border">
+                                <div className="grid h-10 grid-cols-3 rounded-full border border-border">
                                     <button
                                         type="button"
                                         onClick={decreaseQuantity}
                                         className="flex items-center justify-center text-muted-foreground"
-                                        aria-label="Decrease quantity"
+                                        aria-label="Menge reduzieren"
                                     >
                                         <Minus className="size-3.5" />
                                     </button>
@@ -219,26 +240,24 @@ export default function ProductsShow({
                                         type="button"
                                         onClick={increaseQuantity}
                                         className="flex items-center justify-center text-muted-foreground"
-                                        aria-label="Increase quantity"
+                                        aria-label="Menge erhöhen"
                                     >
                                         <Plus className="size-3.5" />
                                     </button>
                                 </div>
                                 <Button
-                                    asChild
-                                    className="h-10 rounded-none bg-ink text-white hover:bg-ink-soft"
+                                    onClick={handleAddToCart}
+                                    className="h-10 bg-brand text-white hover:bg-brand-soft"
                                 >
-                                    <Link href={cart()}>
-                                        <ShoppingCart data-icon="inline-start" />
-                                        Add to cart
-                                    </Link>
+                                    <ShoppingCart data-icon="inline-start" />
+                                    {justAdded ? 'Hinzugefügt' : 'In den Warenkorb'}
                                 </Button>
                                 <div className="hidden sm:block" />
                                 <Button
-                                    asChild
-                                    className="h-10 rounded-none bg-gold text-ink hover:bg-gold/90"
+                                    onClick={handleCheckout}
+                                    className="h-10 bg-gold text-ink hover:bg-gold/90"
                                 >
-                                    <Link href={cart()}>Checkout now</Link>
+                                    Zur Kasse
                                 </Button>
                             </div>
 
@@ -247,10 +266,10 @@ export default function ProductsShow({
                                 className="mt-6 inline-flex items-center gap-2 text-xs text-muted-foreground underline underline-offset-2 hover:text-foreground"
                             >
                                 <Heart className="size-4" />
-                                Add to wishlist
+                                Auf den Merkzettel
                             </button>
                             <p className="mt-3 text-xs font-semibold">
-                                Product number:{' '}
+                                Artikelnummer:{' '}
                                 <span className="font-normal text-muted-foreground">
                                     {product.productNumber ?? product.slug}
                                 </span>
@@ -265,7 +284,7 @@ export default function ProductsShow({
                                     key={tab}
                                     type="button"
                                     onClick={() => setActiveTab(tab)}
-                                    className={`border-b px-0 pb-3 text-sm ${
+                                    className={`-mb-px border-b-2 px-0 pb-3 text-sm font-medium transition-colors ${
                                         activeTab === tab
                                             ? 'border-foreground text-foreground'
                                             : 'border-transparent text-muted-foreground hover:text-foreground'
@@ -278,13 +297,13 @@ export default function ProductsShow({
                         </div>
 
                         <div className="pt-6 text-sm leading-relaxed text-foreground">
-                            {activeTab === 'Description' && (
+                            {activeTab === 'Beschreibung' && (
                                 <>
                                     <h2 className="font-display text-2xl font-bold tracking-tight">
                                         {product.name}
                                     </h2>
                                     <p className="mt-5">
-                                        The product features at a glance:
+                                        Die Produktvorteile auf einen Blick:
                                     </p>
                                     <ul className="mt-4 list-disc space-y-1 pl-5">
                                         {product.highlights.map((highlight) => (
@@ -299,7 +318,7 @@ export default function ProductsShow({
                                     </div>
 
                                     <h3 className="mt-10 font-semibold">
-                                        Scope of delivery:
+                                        Lieferumfang:
                                     </h3>
                                     <ul className="mt-3 list-disc space-y-1 pl-5">
                                         {productScope.map((item) => (
@@ -319,7 +338,7 @@ export default function ProductsShow({
                                             <a
                                                 key={download}
                                                 href="#"
-                                                className="rounded-md border p-4 text-sm font-medium underline-offset-2 hover:underline"
+                                                className="rounded-lg border border-border/80 p-4 text-sm font-medium transition-shadow hover:shadow-float"
                                             >
                                                 {download}
                                             </a>
@@ -328,7 +347,7 @@ export default function ProductsShow({
                                 </div>
                             )}
 
-                            {activeTab === 'Product safety' && (
+                            {activeTab === 'Produktsicherheit' && (
                                 <div>
                                     <h2 className="font-display text-2xl font-bold tracking-tight">
                                         Product safety
@@ -358,8 +377,8 @@ export default function ProductsShow({
                                     {product.manufacturer && (
                                         <div className="mt-6 rounded-md border p-4">
                                             <h3 className="font-semibold">
-                                                Manufacturer / Responsible
-                                                person for the EU
+                                                Hersteller / Verantwortliche
+                                                Person in der EU
                                             </h3>
                                             <p className="mt-3 text-muted-foreground">
                                                 {product.manufacturer.name}
@@ -383,24 +402,25 @@ export default function ProductsShow({
                                 </div>
                             )}
 
-                            {activeTab === 'Reviews' && (
+                            {activeTab === 'Bewertungen' && (
                                 <div>
                                     <h2 className="font-display text-2xl font-bold tracking-tight">
                                         Reviews
                                     </h2>
                                     <div className="mt-5 rounded-md border p-5">
                                         <p className="font-semibold">
-                                            0 of 0 reviews
+                                            0 von 0 Bewertungen
                                         </p>
                                         <p className="mt-2 text-muted-foreground">
                                             {product.reviewNote ??
-                                                'No reviews found. Share your insights with others.'}
+                                                'Noch keine Bewertungen vorhanden. Teilen Sie Ihre Erfahrungen mit anderen.'}
                                         </p>
                                         <p className="mt-4 text-xs text-muted-foreground">
-                                            Reviews are not verified as to the
-                                            authenticity of purchases. Reviews
-                                            may be from customers who have not
-                                            purchased or used the products.
+                                            Bewertungen werden nicht auf die
+                                            Echtheit der Käufe geprüft. Sie
+                                            können auch von Kundinnen und Kunden
+                                            stammen, die das Produkt nicht
+                                            erworben haben.
                                         </p>
                                     </div>
                                 </div>
@@ -415,7 +435,7 @@ export default function ProductsShow({
                                     key={tab}
                                     type="button"
                                     onClick={() => setActiveRelatedTab(tab)}
-                                    className={`border-b pb-3 text-sm ${
+                                    className={`-mb-px border-b-2 pb-3 text-sm font-medium transition-colors ${
                                         activeRelatedTab === tab
                                             ? 'border-foreground text-foreground'
                                             : 'border-transparent text-muted-foreground hover:text-foreground'
@@ -432,9 +452,9 @@ export default function ProductsShow({
                                 {activeRelatedTab}
                             </h2>
                             <p className="mt-2 max-w-2xl text-sm text-muted-foreground">
-                                {activeRelatedTab === 'Accessories'
-                                    ? 'Compatible add-ons and helpful products for this item.'
-                                    : `Products similar to ${product.name}, selected from the same brand, category, or adjacent use cases.`}
+                                {activeRelatedTab === 'Zubehör'
+                                    ? 'Passendes Zubehör und hilfreiche Ergänzungen zu diesem Produkt.'
+                                    : `Produkte ähnlich zu ${product.name} – ausgewählt aus derselben Marke, Kategorie oder verwandten Anwendungen.`}
                             </p>
                         </div>
 
@@ -442,11 +462,11 @@ export default function ProductsShow({
                             {visibleRelatedProducts.map((similarProduct) => (
                                 <article
                                     key={similarProduct.slug}
-                                    className="relative flex min-h-[20rem] flex-col border bg-card p-3"
+                                    className="group relative flex min-h-[20rem] flex-col rounded-xl border border-border/80 bg-card p-3 transition-shadow hover:shadow-float"
                                 >
                                     <Link
                                         href={productShow(similarProduct.slug)}
-                                        className="flex aspect-square items-center justify-center bg-white"
+                                        className="flex aspect-square items-center justify-center overflow-hidden rounded-lg bg-white"
                                     >
                                         <img
                                             src={similarProduct.image}
@@ -457,8 +477,8 @@ export default function ProductsShow({
                                     </Link>
                                     <button
                                         type="button"
-                                        className="absolute top-28 right-5 flex size-8 items-center justify-center rounded-full bg-white text-muted-foreground shadow-sm"
-                                        aria-label="Add to wishlist"
+                                        className="absolute top-28 right-5 flex size-8 items-center justify-center rounded-full bg-white text-muted-foreground shadow-float transition-colors hover:text-brand"
+                                        aria-label="Auf den Merkzettel"
                                     >
                                         <Heart className="size-4" />
                                     </button>
@@ -472,11 +492,13 @@ export default function ProductsShow({
                                         {similarProduct.price} *
                                     </p>
                                     <Button
-                                        asChild
                                         size="sm"
-                                        className="mt-3 rounded-none bg-ink text-white hover:bg-ink-soft"
+                                        onClick={() =>
+                                            addToCart(similarProduct)
+                                        }
+                                        className="mt-3 bg-brand text-white hover:bg-brand-soft"
                                     >
-                                        <Link href={cart()}>Add to cart</Link>
+                                        In den Warenkorb
                                     </Button>
                                 </article>
                             ))}

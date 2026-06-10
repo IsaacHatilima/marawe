@@ -7,6 +7,7 @@ import type {
     TopnavOptions,
 } from '@/components/topnav/topnav-options';
 import { Button } from '@/components/ui/button';
+import { useCart } from '@/hooks/use-cart';
 import { cn } from '@/lib/utils';
 
 interface TopnavProps {
@@ -57,6 +58,41 @@ function NavLink({
     );
 }
 
+function BrandMark({
+    brand,
+    accentClass,
+}: {
+    brand: TopnavOptions['brand'];
+    accentClass: string;
+}) {
+    return (
+        <>
+            {brand.logo && (
+                <span className="flex h-9 shrink-0 items-center justify-center overflow-hidden rounded-md bg-white px-1.5 py-1">
+                    <img
+                        src={brand.logo}
+                        alt={brand.logoAlt ?? `${brand.label} Logo`}
+                        className="h-full w-auto object-contain"
+                    />
+                </span>
+            )}
+            <span className="font-display text-xl font-bold tracking-tight">
+                {brand.label}
+            </span>
+            {brand.eyebrow && (
+                <span
+                    className={cn(
+                        'hidden text-[11px] font-medium tracking-[0.2em] uppercase sm:inline',
+                        accentClass,
+                    )}
+                >
+                    {brand.eyebrow}
+                </span>
+            )}
+        </>
+    );
+}
+
 export default function Topnav({
     options,
     headerClass,
@@ -66,6 +102,7 @@ export default function Topnav({
 }: TopnavProps) {
     const { auth } = usePage().props;
     const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+    const { itemCount, subtotal } = useCart();
 
     return (
         <header
@@ -78,40 +115,22 @@ export default function Topnav({
                 {isInertiaHref(options.brand.href) ? (
                     <Link
                         href={options.brand.href}
-                        className="flex min-w-0 items-baseline gap-1.5"
+                        className="flex min-w-0 items-center gap-2.5"
                     >
-                        <span className="font-display text-xl font-bold tracking-tight">
-                            {options.brand.label}
-                        </span>
-                        {options.brand.eyebrow && (
-                            <span
-                                className={cn(
-                                    'hidden text-[11px] font-medium tracking-[0.2em] uppercase sm:inline',
-                                    accentClass,
-                                )}
-                            >
-                                {options.brand.eyebrow}
-                            </span>
-                        )}
+                        <BrandMark
+                            brand={options.brand}
+                            accentClass={accentClass}
+                        />
                     </Link>
                 ) : (
                     <a
                         href={getHref(options.brand.href)}
-                        className="flex min-w-0 items-baseline gap-1.5"
+                        className="flex min-w-0 items-center gap-2.5"
                     >
-                        <span className="font-display text-xl font-bold tracking-tight">
-                            {options.brand.label}
-                        </span>
-                        {options.brand.eyebrow && (
-                            <span
-                                className={cn(
-                                    'hidden text-[11px] font-medium tracking-[0.2em] uppercase sm:inline',
-                                    accentClass,
-                                )}
-                            >
-                                {options.brand.eyebrow}
-                            </span>
-                        )}
+                        <BrandMark
+                            brand={options.brand}
+                            accentClass={accentClass}
+                        />
                     </a>
                 )}
 
@@ -137,12 +156,17 @@ export default function Topnav({
                         <Link
                             href={options.cartHref}
                             aria-label="Warenkorb"
-                            className="flex items-center gap-2 rounded-md border border-white/20 px-3 py-1.5 text-sm font-medium text-white/85 transition-colors hover:border-white/50 hover:text-white"
+                            className="flex items-center gap-2 rounded-full border border-white/20 px-4 py-1.5 text-sm font-medium text-white/85 transition-colors hover:border-white/50 hover:text-white"
                         >
                             <ShoppingCart className="size-4" />
                             <span className="hidden sm:inline">
-                                {cartLabel}
+                                {itemCount > 0 ? subtotal : cartLabel}
                             </span>
+                            {itemCount > 0 && (
+                                <span className="flex size-5 items-center justify-center rounded-full bg-white text-[11px] font-semibold text-ink">
+                                    {itemCount}
+                                </span>
+                            )}
                         </Link>
                     )}
                     {showAuthAction && options.auth ? (

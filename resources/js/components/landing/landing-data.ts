@@ -74,16 +74,16 @@ export const brands: Brand[] = [
         field: 'Galvanik & Oberflächentechnik',
         description:
             'Galvanik-Sets, Elektrolyte und Poliermittel für die Veredelung metallischer Oberflächen – vom Stiftgalvanisieren bis zur Badgalvanik.',
-        image: 'marawe/Tifoo_Digital.svg',
+        image: '/tifoo/tifoo_logo.svg',
         imageAlt: 'Metallbearbeitung mit Funkenflug',
-        accentClass: 'bg-brand',
+        accentClass: 'bg-tifoo',
     },
     {
         name: 'Goldanalytix',
         field: 'Edelmetallprüfung',
         description:
             'Prüfgeräte, Magnetwaagen und Analysesets, mit denen sich Gold, Silber und Platin zerstörungsfrei auf Echtheit prüfen lassen.',
-        image: 'marawe/goldanalytix_logo.svg',
+        image: '/goldanalytix/goldanalytix_logo.svg',
         imageAlt: 'Goldbarren auf dunklem Untergrund',
         accentClass: 'bg-gold',
     },
@@ -92,18 +92,9 @@ export const brands: Brand[] = [
         field: 'Bauwerksabdichtung',
         description:
             'Horizontalsperren gegen aufsteigende Feuchtigkeit im Mauerwerk – Injektionsverfahren für nachhaltige Bauwerkserhaltung.',
-        image: 'marawe/tobolin_logo.svg',
+        image: '/tobolin/tobolin_logo.svg',
         imageAlt: 'Geschwungene Ziegelfassade eines modernen Bauwerks',
-        accentClass: 'bg-brand',
-    },
-    {
-        name: 'Walhalla-Chemie',
-        field: 'Spezialchemie',
-        description:
-            'Chemische Spezialprodukte und Full-Service-Lösungen für Industrie und Gewerbe – entwickelt, geprüft und abgefüllt am Standort Regensburg.',
-        image: 'marawe/tobolin_logo.svg',
-        imageAlt: 'Laborgläser mit chemischen Lösungen',
-        accentClass: 'bg-brand',
+        accentClass: 'bg-tobolin',
     },
 ];
 

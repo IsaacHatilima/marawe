@@ -16,6 +16,8 @@ export interface TopnavOptions {
         label: string;
         eyebrow?: string;
         href: TopnavHref;
+        logo?: string;
+        logoAlt?: string;
     };
     navItems: TopnavItem[];
     utilityItems?: TopnavItem[];
@@ -30,6 +32,8 @@ export const maraweTopnavOptions = {
     brand: {
         label: 'MARAWE',
         eyebrow: 'Regensburg',
+        logo: '/marawe/marawe_icon.png',
+        logoAlt: 'MARAWE Logo',
         href: '#start',
     },
     navItems: [
@@ -50,6 +54,8 @@ export const tifooTopnavOptions = {
     brand: {
         label: 'TIFOO',
         eyebrow: 'Galvanik & Oberflächentechnik',
+        logo: '/tifoo/tifoo_logo.svg',
+        logoAlt: 'Tifoo Logo',
         href: tifoo(),
     },
     navItems: [
@@ -67,6 +73,8 @@ export const goldanalytixTopnavOptions = {
     brand: {
         label: 'GOLDANALYTIX',
         eyebrow: 'Edelmetallprüfung',
+        logo: '/goldanalytix/goldanalytix_logo.svg',
+        logoAlt: 'Goldanalytix Logo',
         href: goldanalytix(),
     },
     navItems: [
@@ -84,9 +92,12 @@ export const tobolinTopnavOptions = {
     brand: {
         label: 'TOBOLIN',
         eyebrow: 'Bauwerksabdichtung',
+        logo: '/tobolin/tobolin_logo.svg',
+        logoAlt: 'Tobolin Logo',
         href: tobolin(),
     },
     navItems: [
+        { label: 'Shop', href: productsIndex() },
         { label: 'Lösungen', href: '#loesungen' },
         { label: 'Horizontalsperre', href: '#horizontalsperre' },
         { label: 'Videos', href: '#videos' },

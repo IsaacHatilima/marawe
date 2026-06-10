@@ -10,13 +10,7 @@ const brandRoutes: Record<string, string> = {
     Tobolin: tobolin().url,
 };
 
-function BrandCard({
-    href,
-    children,
-}: {
-    href?: string;
-    children: ReactNode;
-}) {
+function BrandCard({ href, children }: { href?: string; children: ReactNode }) {
     const className =
         'group relative block overflow-hidden rounded-xl border bg-card';
 
@@ -39,7 +33,7 @@ export default function BrandsSection() {
                             Unsere Marken
                         </p>
                         <h2 className="max-w-2xl font-display text-3xl font-bold tracking-tight text-balance sm:text-5xl">
-                            Vier Spezialisten. Ein Qualitätsversprechen.
+                            Drei Spezialisten. Ein Qualitätsversprechen.
                         </h2>
                     </div>
                     <p className="max-w-md text-muted-foreground">
@@ -49,7 +43,7 @@ export default function BrandsSection() {
                     </p>
                 </div>
 
-                <div className="grid gap-6 sm:grid-cols-2">
+                <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
                     {brands.map((brand) => (
                         <BrandCard
                             key={brand.name}
@@ -60,7 +54,7 @@ export default function BrandsSection() {
                                     src={brand.image}
                                     alt={brand.imageAlt}
                                     loading="lazy"
-                                    className="size-full mt-2 transition-transform duration-700 group-hover:scale-105"
+                                    className="size-full object-contain p-6 pt-7 transition-transform duration-700 group-hover:scale-105"
                                 />
                                 <span
                                     className={`absolute top-0 left-0 h-1 w-full ${brand.accentClass}`}

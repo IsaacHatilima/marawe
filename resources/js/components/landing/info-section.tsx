@@ -66,14 +66,14 @@ const mediaTiles: MediaTile[] = [
         title: 'GoldScreenSensor | Einfache Goldprüfung',
         subtitle: 'Goldanalytix Edelmetallprüfung',
         image: 'https://img.youtube.com/vi/G10dA-WM6W8/maxresdefault.jpg',
-        href: 'https://www.youtube.com/watch?v=G10dA-WM6W8',
+        href: 'https://www.youtube.com/embed/G10dA-WM6W8',
     },
     {
         type: 'video',
         title: 'Anwendungsideen Stiftgalvanik',
         subtitle: 'Tifoo',
         image: 'https://img.youtube.com/vi/Vy3YETgJ-uE/maxresdefault.jpg',
-        href: 'https://www.youtube.com/watch?v=Vy3YETgJ-uE',
+        href: 'https://www.youtube.com/embed/Vy3YETgJ-uE',
     },
 ];
 
@@ -108,7 +108,7 @@ export default function InfoSection() {
                     ))}
                 </div>
 
-                <div className="mt-14 grid grid-cols-2 gap-4 lg:grid-cols-4">
+                <div className="mt-14 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
                     {mediaTiles.map((tile) => {
                         const content = (
                             <>
@@ -120,7 +120,7 @@ export default function InfoSection() {
                                 />
                                 <div className="absolute inset-0 bg-gradient-to-t from-ink/80 via-ink/20 to-transparent" />
                                 {tile.type === 'video' && (
-                                    <span className="absolute inset-0 m-auto flex size-12 items-center justify-center rounded-full bg-brand text-white shadow-lg transition-transform group-hover:scale-110">
+                                    <span className="absolute inset-0 m-auto flex size-12 items-center justify-center rounded-full bg-brand text-white shadow-float transition-transform group-hover:scale-110">
                                         <Play
                                             className="ml-0.5 size-5 fill-current"
                                             aria-hidden
@@ -146,11 +146,12 @@ export default function InfoSection() {
                         return tile.href ? (
                             <div key={tile.title} className={tileClass}>
                                 <iframe
-                                    width="315"
-                                    height="215"
                                     src={tile.href}
-                                    title="YouTube video player"
+                                    title={tile.title}
+                                    loading="lazy"
                                     allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                                    allowFullScreen
+                                    className="absolute inset-0 size-full border-0"
                                 ></iframe>
                             </div>
                         ) : (

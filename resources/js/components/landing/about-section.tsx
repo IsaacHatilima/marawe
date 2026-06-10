@@ -52,12 +52,12 @@ export default function AboutSection() {
 
                     <div className="relative">
                         <img
-                            src="https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?auto=format&fit=crop&w=1200&q=80"
+                            src="/marawe/marawe_building.jpg"
                             alt="Ingenieurin bei der Arbeit im Labor"
                             loading="lazy"
                             className="aspect-[4/3] w-full rounded-xl object-cover"
                         />
-                        <div className="absolute -bottom-6 -left-6 hidden rounded-xl bg-brand px-6 py-5 text-white shadow-lg sm:block">
+                        <div className="absolute -bottom-6 -left-6 hidden rounded-xl bg-brand px-6 py-5 text-white shadow-float sm:block">
                             <p className="font-display text-3xl font-bold">
                                 Made in
                             </p>
@@ -85,7 +85,7 @@ export default function AboutSection() {
                     {corporateTopics.map((topic) => (
                         <article
                             key={topic.title}
-                            className="rounded-lg border border-white/10 bg-white/5 p-6"
+                            className="rounded-xl border border-white/10 bg-white/5 p-6"
                         >
                             <h3 className="font-display text-xl font-bold tracking-tight text-brand">
                                 {topic.title}

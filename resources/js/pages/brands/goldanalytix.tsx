@@ -4,7 +4,6 @@ import {
     Youtube,
     ArrowRight,
     BadgeCheck,
-    CalendarDays,
     Coins,
     Gem,
     Magnet,
@@ -129,6 +128,7 @@ export default function Goldanalytix() {
             topnav={goldanalytixTopnavOptions}
             footer={{
                 brandName: 'Goldanalytix',
+                logo: '/goldanalytix/goldanalytix_logo.svg',
                 bgClass: 'bg-ink',
                 accentClass: 'text-glx',
                 consultTitle: 'Produktberatung',
@@ -176,7 +176,7 @@ export default function Goldanalytix() {
         >
             <section className="relative bg-ink text-white">
                 <img
-                    src="/marawe/marawe_gold.jpg"
+                    src="https://www.gold-analytix.de/media/8e/44/57/1757032338/goldanalytix-goldfaelschungen-erkennen.webp"
                     alt="Goldanalytix Edelmetallprüfung"
                     className="absolute inset-0 size-full object-cover opacity-35"
                     loading="eager"
@@ -224,10 +224,10 @@ export default function Goldanalytix() {
                             </Button>
                         </div>
                     </div>
-                    <div className="rounded-lg border border-white/15 bg-white/10 p-5 shadow-2xl backdrop-blur-md">
+                    <div className="rounded-xl border border-white/15 bg-white/10 p-5 shadow-float backdrop-blur-md">
                         <div className="flex items-center gap-4">
                             <img
-                                src="/marawe/goldanalytix_logo.svg"
+                                src="/goldanalytix/goldanalytix_logo.svg"
                                 alt="Goldanalytix Logo"
                                 className="size-16 rounded-md object-cover"
                                 loading="lazy"
@@ -258,9 +258,12 @@ export default function Goldanalytix() {
 
             <section className="border-y-4 border-ink bg-glx text-ink">
                 <div className="mx-auto flex w-full max-w-7xl flex-col items-center gap-6 px-6 py-10 text-center sm:flex-row sm:text-left lg:px-8">
-                    <span className="flex size-14 shrink-0 items-center justify-center rounded-full bg-ink text-glx">
-                        <CalendarDays className="size-7" aria-hidden />
-                    </span>
+                    <img
+                        src="https://www.gold-analytix.de/media/06/75/c1/1779359794/banner-seminar-edelmetallpruefung-2720x764.webp"
+                        alt="Seminar Edelmetallprüfung"
+                        className="w-full max-w-xs shrink-0 rounded-md border border-ink/20 object-cover sm:max-w-sm"
+                        loading="lazy"
+                    />
                     <div className="flex-1">
                         <h2 className="font-display text-2xl font-bold tracking-tight">
                             Seminar Edelmetallprüfung
@@ -308,7 +311,7 @@ export default function Goldanalytix() {
                         {products.map((product) => (
                             <article
                                 key={product.name}
-                                className="group overflow-hidden rounded-lg border bg-card transition-shadow hover:shadow-xl"
+                                className="group overflow-hidden rounded-xl border border-border/80 bg-card transition-shadow hover:shadow-float"
                             >
                                 <div className="relative aspect-[4/3] overflow-hidden bg-white">
                                     <img
@@ -317,7 +320,7 @@ export default function Goldanalytix() {
                                         className="size-full object-contain p-5 transition-transform duration-700 group-hover:scale-105"
                                         loading="lazy"
                                     />
-                                    <span className="absolute bottom-4 left-4 flex size-11 items-center justify-center rounded-md bg-glx text-ink shadow-lg">
+                                    <span className="absolute bottom-4 left-4 flex size-11 items-center justify-center rounded-md bg-glx text-ink shadow-float">
                                         <product.icon
                                             className="size-5"
                                             aria-hidden
@@ -349,7 +352,7 @@ export default function Goldanalytix() {
                         {mediaHighlights.map((video) => (
                             <div
                                 key={video.title}
-                                className="grid items-center gap-6 rounded-lg border border-white/10 bg-white/5 p-6 lg:grid-cols-2 lg:p-8"
+                                className="grid items-center gap-6 rounded-xl border border-white/10 bg-white/5 p-6 lg:grid-cols-2 lg:p-8"
                             >
                                 <div>
                                     <h2 className="font-display text-2xl font-bold tracking-tight text-glx">
@@ -372,7 +375,7 @@ export default function Goldanalytix() {
                                         className="absolute inset-0 size-full object-cover transition-transform duration-700 group-hover:scale-105"
                                         loading="lazy"
                                     />
-                                    <span className="absolute inset-0 m-auto flex size-14 items-center justify-center rounded-full bg-glx text-ink shadow-xl transition-transform group-hover:scale-110">
+                                    <span className="absolute inset-0 m-auto flex size-14 items-center justify-center rounded-full bg-glx text-ink shadow-float transition-transform group-hover:scale-110">
                                         <Play className="ml-1 size-6 fill-current" />
                                     </span>
                                     <span className="absolute right-4 bottom-3 text-xs font-semibold text-white/80">
@@ -390,7 +393,7 @@ export default function Goldanalytix() {
                         {guides.map((guide) => (
                             <article
                                 key={guide.title}
-                                className="overflow-hidden rounded-lg border border-white/10 bg-white/5"
+                                className="overflow-hidden rounded-xl border border-white/10 bg-white/5"
                             >
                                 <div className="flex aspect-[4/3] items-center justify-center bg-white">
                                     <img
@@ -465,7 +468,7 @@ export default function Goldanalytix() {
                         src="https://www.gold-analytix.de/media/91/ce/71/1757032510/tempor-res-bild.webp"
                         alt="Tastatur mit goldener Edelmetallprüfgeräte-Taste und Goldanalytix-Logo"
                         loading="lazy"
-                        className="w-full self-center rounded-lg border object-cover shadow-sm lg:order-first"
+                        className="w-full self-center rounded-xl border border-border/60 object-cover shadow-float lg:order-first"
                     />
                 </div>
                 <div className="mx-auto mt-16 w-full max-w-7xl px-6 lg:px-8">

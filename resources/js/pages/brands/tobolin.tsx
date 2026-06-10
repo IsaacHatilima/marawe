@@ -4,16 +4,8 @@ import {
     Instagram,
     Youtube,
     ArrowRight,
-    BadgeEuro,
-    Droplets,
-    Gauge,
-    Headset,
     Home,
-    Layers,
-    ShieldCheck,
-    Wrench,
 } from 'lucide-react';
-import type { ComponentType } from 'react';
 import { useEffect, useState } from 'react';
 import BrandLayout from '@/components/brands/brand-layout';
 import { tobolinTopnavOptions } from '@/components/topnav/topnav-options';
@@ -29,7 +21,6 @@ import type { CarouselApi } from '@/components/ui/carousel';
 import { cn } from '@/lib/utils';
 
 interface Solution {
-    icon: ComponentType<{ className?: string }>;
     title: string;
     body: string;
     image: string;
@@ -37,44 +28,40 @@ interface Solution {
 
 const solutions: Solution[] = [
     {
-        icon: Layers,
         title: 'Horizontalsperre',
         body: 'Mit der Horizontalsperre schützen Sie Ihr Mauerwerk vor aufsteigender Feuchtigkeit und Schimmel.',
-        image: 'https://images.unsplash.com/photo-1621905251918-48416bd8575a?auto=format&fit=crop&w=900&q=80',
+        image: 'https://www.tobolin.de/media/c4/a8/0a/1761810302/icon-horizontalsperre.webp',
     },
     {
-        icon: ShieldCheck,
         title: 'Abdichtung von innen',
         body: 'Ob Sanierung im Bestand oder Feuchteschutz im Neubau: unsere Lösungen bewähren sich in Privathäusern, denkmalgeschützten Gebäuden und gewerblichen Objekten.',
-        image: 'https://images.unsplash.com/photo-1523413307857-ef24c53571ae?auto=format&fit=crop&w=900&q=80',
+        image: 'https://www.tobolin.de/media/fb/14/d1/1761560021/icon-negativabdichtung-1.webp',
     },
     {
-        icon: Gauge,
         title: 'Feuchtemessung',
         body: 'Feuchtigkeitsmessgerät TOBOMETER HY: schnelle Messung, zuverlässige Werte, einfache Anwendung.',
-        image: 'https://images.unsplash.com/photo-1581092160607-ee22621dd758?auto=format&fit=crop&w=900&q=80',
+        image: 'https://www.tobolin.de/media/d2/59/51/1755518299/icon-feuchtemessung.webp',
     },
     {
-        icon: Droplets,
         title: 'Pflasterpflege',
         body: 'Sauberes Pflaster – gepflegte Fugen. Entdecken Sie unsere Produkte für Pflaster, Steinflächen und Fugen.',
-        image: 'https://images.unsplash.com/photo-1605146768851-eda79da39897?auto=format&fit=crop&w=900&q=80',
+        image: 'https://www.tobolin.de/media/79/0a/a7/1760015796/pflasterschutz-icon-neu.webp',
     },
 ];
 
 const promises = [
     {
-        icon: Wrench,
+        image: 'https://www.tobolin.de/media/ee/95/fe/1779096532/einfache-anwendung2-1536x1024.webp',
         title: 'Einfache Anwendung',
         body: 'Alle unsere Produkte sind anwendungsbezogen und verständlich aufgebaut. Horizontalsperre und weitere Systemlösungen können Sie ganz unkompliziert und ohne viel Aufwand selbst anbringen.',
     },
     {
-        icon: BadgeEuro,
+        image: 'https://www.tobolin.de/media/a0/e8/e0/1779096078/preis-leistung-doppelt-1160x728.webp',
         title: 'Top Preis-Leistung',
         body: 'Wir sind preiswerter, weil wir online direkt zum Endkunden verkaufen. Unsere Systeme sind überwiegend günstiger als aufwendige Dienstleistungen. Dabei garantieren wir beste Qualität – Made in Germany.',
     },
     {
-        icon: Headset,
+        image: 'https://www.tobolin.de/media/4e/e7/dc/1769004460/freundlicher-mann-im-bro-mit-headset-skal2.webp',
         title: 'Persönliche Beratung',
         body: 'Profitieren Sie von unserer langjährigen wissenschaftlichen Erfahrung und Kundennähe. Unser TÜV-zertifizierter Kundenservice berät Sie gerne individuell und auf Ihre Anliegen zugeschnitten.',
     },
@@ -157,6 +144,7 @@ export default function Tobolin() {
             topnav={tobolinTopnavOptions}
             footer={{
                 brandName: 'Tobolin',
+                logo: '/tobolin/tobolin_logo.svg',
                 bgClass: 'bg-tobolin',
                 accentClass: 'text-tobolin-accent',
                 consultTitle: 'Persönliche Beratung',
@@ -219,7 +207,7 @@ export default function Tobolin() {
                                         loading="eager"
                                     />
                                     <div className="relative mx-auto w-full max-w-7xl px-6 py-20 lg:px-8">
-                                        <div className="max-w-xl rounded-lg bg-white/85 p-7 shadow-xl backdrop-blur-sm lg:p-10">
+                                        <div className="max-w-xl rounded-xl bg-white/85 p-7 shadow-float backdrop-blur-sm lg:p-10">
                                             <p className="mb-3 text-xs font-semibold tracking-[0.25em] text-tobolin uppercase">
                                                 Tobolin · Eine Marke der MARAWE
                                                 GmbH &amp; Co. KG
@@ -324,7 +312,7 @@ export default function Tobolin() {
                         ].map((item) => (
                             <div
                                 key={item}
-                                className="flex items-center gap-3 rounded-lg border bg-card p-5"
+                                className="flex items-center gap-3 rounded-xl border border-border/80 bg-card p-5"
                             >
                                 <Home className="size-5 text-tobolin" />
                                 <span className="text-sm font-semibold">
@@ -352,22 +340,15 @@ export default function Tobolin() {
                         {solutions.map((solution) => (
                             <article
                                 key={solution.title}
-                                className="group overflow-hidden rounded-lg border bg-card transition-shadow hover:shadow-xl"
+                                className="group overflow-hidden rounded-xl border border-border/80 bg-card transition-shadow hover:shadow-float"
                             >
-                                <div className="relative aspect-[4/3] overflow-hidden">
+                                <div className="flex aspect-[4/3] items-center justify-center bg-white p-8">
                                     <img
                                         src={solution.image}
                                         alt={solution.title}
-                                        className="size-full object-cover transition-transform duration-700 group-hover:scale-105"
+                                        className="max-h-full w-auto object-contain transition-transform duration-500 group-hover:scale-105"
                                         loading="lazy"
                                     />
-                                    <div className="absolute inset-0 bg-gradient-to-t from-tobolin/75 to-transparent" />
-                                    <span className="absolute bottom-4 left-4 flex size-11 items-center justify-center rounded-md bg-tobolin text-white shadow-lg">
-                                        <solution.icon
-                                            className="size-5"
-                                            aria-hidden
-                                        />
-                                    </span>
                                 </div>
                                 <div className="p-6">
                                     <h3 className="font-display text-lg font-bold tracking-tight">
@@ -385,7 +366,14 @@ export default function Tobolin() {
 
             <section id="videos" className="bg-secondary py-24 lg:py-32">
                 <div className="mx-auto w-full max-w-4xl px-6 lg:px-8">
-                    <div className="rounded-lg border bg-card p-8">
+                    <div className="overflow-hidden rounded-xl border border-border/80 bg-card">
+                        <img
+                            src="https://www.tobolin.de/media/b3/ab/a0/1778152340/ceo-banner-neu.webp"
+                            alt="Das Team hinter TOBOLIN"
+                            className="aspect-[4/3] w-full object-cover sm:aspect-[2/1] lg:aspect-auto"
+                            loading="lazy"
+                        />
+                        <div className="p-8">
                         <p className="mb-3 text-xs font-semibold tracking-[0.25em] text-tobolin uppercase dark:text-tobolin-accent">
                             Wer steckt hinter TOBOLIN?
                         </p>
@@ -404,6 +392,7 @@ export default function Tobolin() {
                             Mit über 10 Jahren Erfahrung steht Tobolin für
                             Qualität, Innovation und persönlichen Kundenservice.
                         </p>
+                        </div>
                     </div>
                 </div>
             </section>
@@ -426,20 +415,22 @@ export default function Tobolin() {
                         {promises.map((promise) => (
                             <article
                                 key={promise.title}
-                                className="rounded-lg border border-white/10 bg-white/5 p-6 lg:p-8"
+                                className="overflow-hidden rounded-xl border border-white/10 bg-white/5"
                             >
-                                <span className="mb-5 flex size-12 items-center justify-center rounded-md bg-tobolin-accent text-white">
-                                    <promise.icon
-                                        className="size-6"
-                                        aria-hidden
-                                    />
-                                </span>
+                                <img
+                                    src={promise.image}
+                                    alt={promise.title}
+                                    className="aspect-[3/2] w-full object-cover"
+                                    loading="lazy"
+                                />
+                                <div className="p-6 lg:p-8">
                                 <h3 className="font-display text-lg font-bold tracking-tight">
                                     {promise.title}
                                 </h3>
                                 <p className="mt-2 text-sm leading-relaxed text-white/75">
                                     {promise.body}
                                 </p>
+                                </div>
                             </article>
                         ))}
                     </div>
