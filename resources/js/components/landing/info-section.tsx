@@ -1,7 +1,6 @@
 import { ArrowRight, Play } from 'lucide-react';
 import { goldanalytix, tifoo } from '@/routes/brands';
 
-
 interface InfoColumn {
     title: string;
     body: string;
@@ -12,24 +11,33 @@ const infoColumns: InfoColumn[] = [
     {
         title: 'Über MARAWE',
         body: 'Die MARAWE GmbH & Co. KG, mit Hauptsitz in Regensburg, entwickelt, produziert und vertreibt im Rahmen der Marken Tifoo, Goldanalytix, Walhalla-Chemie und Tobolin als einer der führenden Anbieter Produkte für die Oberflächenveredelung und -reinigung, Galvanotechnik, Edelmetallprüfung und Bauchemie.',
-        link: { label: 'Mehr über die MARAWE GmbH & Co. KG', href: '#ueber-uns' },
+        link: {
+            label: 'Mehr über die MARAWE GmbH & Co. KG',
+            href: '#ueber-uns',
+        },
     },
     {
         title: 'Tifoo',
         body: 'Unter dem Markennamen Tifoo vertreiben wir Produkte zur eigenständigen Vorbehandlung, Beschichtung und Reinigung von Oberflächen aller Art – vom Galvanisieren (selber Vergolden & Versilbern) über das Brünieren von Stahl bis zum Patinieren von Buntmetallen. Ideal für Profis ebenso wie für Einsteiger, Bastler und Künstler.',
-        link: { label: 'Hier geht es zu den Tifoo-Produkten', href: tifoo().url },
+        link: {
+            label: 'Hier geht es zu den Tifoo-Produkten',
+            href: tifoo().url,
+        },
     },
     {
         title: 'Goldanalytix – Goldprüfung',
         body: 'Die Marke Goldanalytix steht für einfach bedienbare und schnell messende Prüfgeräte für Gold, Silber und Platin. Edelmetallhändler, Pfandleiher, Banken, Juweliere und Privatinvestoren prüfen damit Gold auf Echtheit und erkennen die häufigen Fälschungen von Barren, Münzen und Schmuck.',
-        link: { label: "Hier geht es zu Goldanalytix", href: goldanalytix().url },
+        link: {
+            label: 'Hier geht es zu Goldanalytix',
+            href: goldanalytix().url,
+        },
     },
     {
         title: 'Get instructed',
         body: 'Zahlreiche Inspirationen zu Do-it-yourself-Anwendungen unserer Produkte gibt es auf YouTube! Finden Sie dort Anwendungs-, Anleitungs- und Vorführungsvideos rund um Galvanik, Goldprüfung und mehr.',
         link: {
-            label: "Hier geht es zum Tifoo-YouTube-Kanal",
-            href: 'https://www.youtube.com/',
+            label: 'Hier geht es zum Tifoo-YouTube-Kanal',
+            href: 'https://www.youtube.com/user/TifooTech',
         },
     },
 ];
@@ -46,26 +54,26 @@ const mediaTiles: MediaTile[] = [
     {
         type: 'image',
         title: 'Unser Standort Regensburg',
-        image: 'marawe/marawe_building.jpg',
+        image: '/marawe/marawe_building.jpg',
     },
     {
         type: 'image',
         title: 'Oberflächen in Profiqualität',
-        image: 'marawe/marawe_bolts.jpg',
+        image: '/marawe/marawe_bolts.jpg',
     },
     {
         type: 'video',
         title: 'GoldScreenSensor | Einfache Goldprüfung',
         subtitle: 'Goldanalytix Edelmetallprüfung',
         image: 'https://img.youtube.com/vi/G10dA-WM6W8/maxresdefault.jpg',
-        href: 'https://www.youtube.com/embed/G10dA-WM6W8?si=LqNmj5pbKEJZlgIL',
+        href: 'https://www.youtube.com/watch?v=G10dA-WM6W8',
     },
     {
         type: 'video',
         title: 'Anwendungsideen Stiftgalvanik',
         subtitle: 'Tifoo',
         image: 'https://img.youtube.com/vi/Vy3YETgJ-uE/maxresdefault.jpg',
-        href: 'https://www.youtube.com/embed/Vy3YETgJ-uE?si=OjNdarUUQ0Y5_sRG',
+        href: 'https://www.youtube.com/watch?v=Vy3YETgJ-uE',
     },
 ];
 
@@ -136,7 +144,7 @@ export default function InfoSection() {
                             'group relative aspect-[4/3] overflow-hidden rounded-xl border';
 
                         return tile.href ? (
-                            <div className={tileClass}>
+                            <div key={tile.title} className={tileClass}>
                                 <iframe
                                     width="315"
                                     height="215"

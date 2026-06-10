@@ -1,7 +1,7 @@
 import { ArrowUp, Mail } from 'lucide-react';
 import { motion, useReducedMotion } from 'motion/react';
 import { useState } from 'react';
-import type {FormEvent, ReactNode} from 'react';
+import type { FormEvent, ReactNode } from 'react';
 import { socialLinks } from '@/components/brands/social-icon-row';
 import { Button } from '@/components/ui/button';
 import { Checkbox } from '@/components/ui/checkbox';
@@ -178,11 +178,10 @@ export default function LandingFooter() {
 
                     <FooterColumn title="Newsletter" delay={0.3}>
                         <p className="text-sm leading-relaxed text-white/70">
-                            Abonnieren Sie den kostenlosen MARAWE-Newsletter
-                            und erfahren Sie alle Neuigkeiten rund um unsere
-                            Marken. Durch Eintragen Ihrer
-                            Anmelde-E-Mail-Adresse können Sie sich hier auch
-                            vom Newsletter abmelden.
+                            Abonnieren Sie den kostenlosen MARAWE-Newsletter und
+                            erfahren Sie alle Neuigkeiten rund um unsere Marken.
+                            Durch Eintragen Ihrer Anmelde-E-Mail-Adresse können
+                            Sie sich hier auch vom Newsletter abmelden.
                         </p>
                         {isSubscribed ? (
                             <p className="mt-4 text-sm font-medium text-gold">

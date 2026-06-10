@@ -100,7 +100,7 @@ export const brands: Brand[] = [
         name: 'Walhalla-Chemie',
         field: 'Spezialchemie',
         description:
-            'Chemische Spezialprodukte für Industrie und Gewerbe – entwickelt, geprüft und abgefüllt am Standort Regensburg.',
+            'Chemische Spezialprodukte und Full-Service-Lösungen für Industrie und Gewerbe – entwickelt, geprüft und abgefüllt am Standort Regensburg.',
         image: 'marawe/tobolin_logo.svg',
         imageAlt: 'Laborgläser mit chemischen Lösungen',
         accentClass: 'bg-brand',
@@ -110,8 +110,8 @@ export const brands: Brand[] = [
 export const stats: Stat[] = [
     { value: '4', label: 'Spezialmarken unter einem Dach' },
     { value: '100 %', label: 'Entwicklung & Abfüllung in Regensburg' },
-    { value: '50+', label: 'Länder, in die wir liefern' },
-    { value: '10.000+', label: 'zufriedene Kunden pro Jahr' },
+    { value: '10+', label: 'Jahre Erfahrung im Markenverbund' },
+    { value: '4', label: 'Shop-Sprachen: DE, EN, FR, IT' },
 ];
 
 export const faqs: Faq[] = [
@@ -129,6 +129,11 @@ export const faqs: Faq[] = [
     },
     {
         question: 'Versenden Sie auch international?',
-        answer: 'Ja, wir versenden weltweit. Versandkosten und Lieferzeiten richten sich nach Zielland und Gefahrgutklasse des Produkts und werden im Bestellprozess transparent ausgewiesen.',
+        answer: 'Ja, unsere Marken-Shops liefern auch international – Goldanalytix ist zusätzlich mit eigenen Shops für Frankreich und Spanien vertreten. Versandkosten und Lieferzeiten richten sich nach Zielland und Produkt und werden im Bestellprozess transparent ausgewiesen.',
+    },
+    {
+        question:
+            'Kann MARAWE auch als Partner für Vertrieb oder Lohnherstellung auftreten?',
+        answer: 'Ja. Neben den eigenen Marken bildet MARAWE Partnerschaften, Full-Service-Lohnherstellung und markenübergreifende Beratung ab. Der erste Kontakt läuft über die zentrale Service-Hotline oder das Kontaktformular.',
     },
 ];

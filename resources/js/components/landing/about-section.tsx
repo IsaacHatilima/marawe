@@ -1,5 +1,20 @@
 import { stats } from '@/components/landing/landing-data';
 
+const corporateTopics = [
+    {
+        title: 'MARAWE Gruppe',
+        body: 'Die Gruppe bündelt E-Commerce, Entwicklung, Abfüllung, Versand und Fachberatung für spezialisierte Anwendungen rund um Oberflächen, Edelmetalle und Bauchemie.',
+    },
+    {
+        title: 'EU-Förderung',
+        body: 'Förder- und Entwicklungsprojekte stehen für den Anspruch, Produkte und Prozesse stetig weiterzuentwickeln und den Standort Regensburg langfristig zu stärken.',
+    },
+    {
+        title: 'Vertriebspartnerschaft',
+        body: 'Für Händler, Fachanwender und internationale Partner bietet MARAWE markenübergreifende Zusammenarbeit, technische Beratung und klare Sortimentsstrukturen.',
+    },
+];
+
 export default function AboutSection() {
     return (
         <section id="ueber-uns" className="bg-ink py-24 text-white lg:py-32">
@@ -24,6 +39,14 @@ export default function AboutSection() {
                             Unser Anspruch: Produkte, die im Labor bestehen und
                             in der Praxis überzeugen – ob in der Industrie, im
                             Handwerk oder in der heimischen Werkstatt.
+                        </p>
+                        <p className="mt-4 text-white/70">
+                            MARAWE verbindet die Marken Tifoo, Goldanalytix,
+                            Tobolin und Walhalla-Chemie. Jede Marke ist
+                            spezialisiert, aber alle profitieren von denselben
+                            kurzen Wegen, demselben Service-Team und der
+                            gemeinsamen Erfahrung in Entwicklung, Produktion und
+                            Online-Handel.
                         </p>
                     </div>
 
@@ -57,6 +80,22 @@ export default function AboutSection() {
                         </div>
                     ))}
                 </dl>
+
+                <div className="mt-16 grid gap-5 md:grid-cols-3">
+                    {corporateTopics.map((topic) => (
+                        <article
+                            key={topic.title}
+                            className="rounded-lg border border-white/10 bg-white/5 p-6"
+                        >
+                            <h3 className="font-display text-xl font-bold tracking-tight text-brand">
+                                {topic.title}
+                            </h3>
+                            <p className="mt-3 text-sm leading-relaxed text-white/70">
+                                {topic.body}
+                            </p>
+                        </article>
+                    ))}
+                </div>
             </div>
         </section>
     );

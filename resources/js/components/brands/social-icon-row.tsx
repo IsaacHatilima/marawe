@@ -19,23 +19,47 @@ export function PinterestIcon({ className }: { className?: string }) {
     );
 }
 
-interface SocialLink {
+export interface SocialLink {
     icon: ComponentType<{ className?: string }>;
     label: string;
     href: string;
 }
 
-export const socialLinks: SocialLink[] = [
-    { icon: Facebook, label: 'Facebook', href: 'https://www.facebook.com/' },
-    { icon: Instagram, label: 'Instagram', href: 'https://www.instagram.com/' },
-    { icon: PinterestIcon, label: 'Pinterest', href: 'https://www.pinterest.de/' },
-    { icon: Youtube, label: 'YouTube', href: 'https://www.youtube.com/' },
+export const marawSocialLinks: SocialLink[] = [
+    {
+        icon: Facebook,
+        label: "Facebook",
+        href: "https://www.facebook.com/tifoo.galvanik/",
+    },
+    {
+        icon: Instagram,
+        label: "Instagram",
+        href: "https://www.instagram.com/tifoogalvanik/",
+    },
+    {
+        icon: PinterestIcon,
+        label: "Pinterest",
+        href: "https://de.pinterest.com/tifoogalvanik/",
+    },
+    {
+        icon: Youtube,
+        label: "YouTube",
+        href: "https://www.youtube.com/user/TifooTech",
+    },
 ];
 
-export function SocialIconRow({ hoverClass }: { hoverClass: string }) {
+export const socialLinks = marawSocialLinks;
+
+export function SocialIconRow({
+    hoverClass,
+    links = marawSocialLinks,
+}: {
+    hoverClass: string;
+    links?: SocialLink[];
+}) {
     return (
         <div className="flex gap-2">
-            {socialLinks.map((social) => (
+            {links.map((social) => (
                 <a
                     key={social.label}
                     href={social.href}

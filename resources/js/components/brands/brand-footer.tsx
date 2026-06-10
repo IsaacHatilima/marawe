@@ -2,6 +2,7 @@ import { Clock, Mail, MessageCircle, Phone } from 'lucide-react';
 import { useState } from 'react';
 import type { FormEvent } from 'react';
 import { SocialIconRow } from '@/components/brands/social-icon-row';
+import type { SocialLink } from '@/components/brands/social-icon-row';
 import { Button } from '@/components/ui/button';
 import { Checkbox } from '@/components/ui/checkbox';
 import { Input } from '@/components/ui/input';
@@ -20,8 +21,10 @@ export interface BrandFooterConfig {
     consultTitle: string;
     consultIntro: string;
     phone: string;
-    email: string;
+    email?: string;
+    contactFormUrl?: string;
     whatsapp?: string;
+    socials?: SocialLink[];
     serviceLinks: FooterLink[];
     infoLinks: FooterLink[];
     showNewsletter?: boolean;
@@ -110,13 +113,16 @@ export default function BrandFooter({
     consultIntro,
     phone,
     email,
+    contactFormUrl,
     whatsapp,
+    socials,
     serviceLinks,
     infoLinks,
     showNewsletter = false,
 }: BrandFooterConfig) {
     return (
         <footer
+            id="kontakt"
             className={cn('border-t border-white/10 text-white', bgClass)}
         >
             <div className="mx-auto w-full max-w-7xl px-6 py-16 lg:px-8">
@@ -155,13 +161,26 @@ export default function BrandFooter({
                                     WhatsApp: {whatsapp}
                                 </p>
                             )}
-                            <a
-                                href={`mailto:${email}`}
-                                className="flex items-center gap-2 transition-colors hover:text-white"
-                            >
-                                <Mail className="size-4" aria-hidden />
-                                {email}
-                            </a>
+                            {email && (
+                                <a
+                                    href={`mailto:${email}`}
+                                    className="flex items-center gap-2 transition-colors hover:text-white"
+                                >
+                                    <Mail className="size-4" aria-hidden />
+                                    {email}
+                                </a>
+                            )}
+                            {contactFormUrl && (
+                                <a
+                                    href={contactFormUrl}
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    className="flex items-center gap-2 underline underline-offset-2 transition-colors hover:text-white"
+                                >
+                                    <Mail className="size-4" aria-hidden />
+                                    Oder über unser Kontaktformular
+                                </a>
+                            )}
                             <p className="flex items-center gap-2">
                                 <Clock className="size-4" aria-hidden />
                                 Mo – Do: 09:00 - 16:00 Uhr · Fr: 09:00 - 14:00
@@ -259,7 +278,10 @@ export default function BrandFooter({
                     <p className="text-sm font-medium text-white/80">
                         Finde mehr Inspiration auf:
                     </p>
-                    <SocialIconRow hoverClass="hover:border-white/60 hover:text-white" />
+                    <SocialIconRow
+                        links={socials}
+                        hoverClass="hover:border-white/60 hover:text-white"
+                    />
                     <div className="text-center text-xs text-white/40">
                         <p>
                             * Alle Preise verstehen sich zzgl.{' '}
@@ -273,9 +295,9 @@ export default function BrandFooter({
                             beschrieben.
                         </p>
                         <p className="mt-1">
-                            Copyright © {new Date().getFullYear()} {brandName}{' '}
-                            – eine Marke der MARAWE GmbH &amp; Co. KG. Alle
-                            Rechte vorbehalten. · Fotos: Unsplash (Platzhalter)
+                            Copyright © {new Date().getFullYear()} {brandName} –
+                            eine Marke der MARAWE GmbH &amp; Co. KG. Alle Rechte
+                            vorbehalten. · Fotos: Unsplash (Platzhalter)
                         </p>
                     </div>
                 </div>

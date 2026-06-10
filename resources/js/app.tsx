@@ -14,6 +14,8 @@ createInertiaApp({
         switch (true) {
             case name === 'welcome':
             case name.startsWith('brands/'):
+            case name.startsWith('products/'):
+            case name === 'cart':
                 return null;
             case name.startsWith('auth/'):
                 return AuthLayout;

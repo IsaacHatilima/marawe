@@ -1,43 +1,64 @@
+import Autoplay from 'embla-carousel-autoplay';
 import {
+    Facebook,
+    Instagram,
+    Youtube,
     ArrowRight,
     BadgeEuro,
     Droplets,
     Gauge,
     Headset,
+    Home,
     Layers,
     ShieldCheck,
     Wrench,
 } from 'lucide-react';
 import type { ComponentType } from 'react';
+import { useEffect, useState } from 'react';
 import BrandLayout from '@/components/brands/brand-layout';
+import { tobolinTopnavOptions } from '@/components/topnav/topnav-options';
 import { Button } from '@/components/ui/button';
+import {
+    Carousel,
+    CarouselContent,
+    CarouselItem,
+    CarouselNext,
+    CarouselPrevious,
+} from '@/components/ui/carousel';
+import type { CarouselApi } from '@/components/ui/carousel';
+import { cn } from '@/lib/utils';
 
 interface Solution {
     icon: ComponentType<{ className?: string }>;
     title: string;
     body: string;
+    image: string;
 }
 
 const solutions: Solution[] = [
     {
         icon: Layers,
         title: 'Horizontalsperre',
-        body: 'Stoppt aufsteigende Feuchtigkeit im Mauerwerk per Injektionsverfahren – einfach selbst anzubringen, dauerhaft wirksam.',
+        body: 'Mit der Horizontalsperre schützen Sie Ihr Mauerwerk vor aufsteigender Feuchtigkeit und Schimmel.',
+        image: 'https://images.unsplash.com/photo-1621905251918-48416bd8575a?auto=format&fit=crop&w=900&q=80',
     },
     {
         icon: ShieldCheck,
         title: 'Abdichtung von innen',
-        body: 'Kapillarabdichtung für Keller- und Innenwände, wenn eine Abdichtung von außen nicht möglich oder zu aufwendig ist.',
+        body: 'Ob Sanierung im Bestand oder Feuchteschutz im Neubau: unsere Lösungen bewähren sich in Privathäusern, denkmalgeschützten Gebäuden und gewerblichen Objekten.',
+        image: 'https://images.unsplash.com/photo-1523413307857-ef24c53571ae?auto=format&fit=crop&w=900&q=80',
     },
     {
         icon: Gauge,
         title: 'Feuchtemessung',
-        body: 'Messgeräte und Methoden, mit denen Sie Feuchtigkeit im Mauerwerk zuverlässig lokalisieren und den Sanierungserfolg kontrollieren.',
+        body: 'Feuchtigkeitsmessgerät TOBOMETER HY: schnelle Messung, zuverlässige Werte, einfache Anwendung.',
+        image: 'https://images.unsplash.com/photo-1581092160607-ee22621dd758?auto=format&fit=crop&w=900&q=80',
     },
     {
         icon: Droplets,
         title: 'Pflasterpflege',
-        body: 'Reinigung, Schutz und Pflege für Pflasterflächen – damit Einfahrten und Terrassen dauerhaft gepflegt bleiben.',
+        body: 'Sauberes Pflaster – gepflegte Fugen. Entdecken Sie unsere Produkte für Pflaster, Steinflächen und Fugen.',
+        image: 'https://images.unsplash.com/photo-1605146768851-eda79da39897?auto=format&fit=crop&w=900&q=80',
     },
 ];
 
@@ -45,29 +66,95 @@ const promises = [
     {
         icon: Wrench,
         title: 'Einfache Anwendung',
-        body: 'Alle Produkte sind anwendungsbezogen und verständlich aufgebaut. Horizontalsperren und Systemlösungen bringen Sie unkompliziert und ohne viel Aufwand selbst an.',
+        body: 'Alle unsere Produkte sind anwendungsbezogen und verständlich aufgebaut. Horizontalsperre und weitere Systemlösungen können Sie ganz unkompliziert und ohne viel Aufwand selbst anbringen.',
     },
     {
         icon: BadgeEuro,
         title: 'Top Preis-Leistung',
-        body: 'Wir verkaufen online direkt zum Endkunden und sind dadurch deutlich günstiger als aufwendige Dienstleistungen – bei bester Qualität, Made in Germany.',
+        body: 'Wir sind preiswerter, weil wir online direkt zum Endkunden verkaufen. Unsere Systeme sind überwiegend günstiger als aufwendige Dienstleistungen. Dabei garantieren wir beste Qualität – Made in Germany.',
     },
     {
         icon: Headset,
         title: 'Persönliche Beratung',
-        body: 'Profitieren Sie von langjähriger wissenschaftlicher Erfahrung: Unser TÜV-zertifizierter Kundenservice berät Sie individuell und auf Ihr Anliegen zugeschnitten.',
+        body: 'Profitieren Sie von unserer langjährigen wissenschaftlichen Erfahrung und Kundennähe. Unser TÜV-zertifizierter Kundenservice berät Sie gerne individuell und auf Ihre Anliegen zugeschnitten.',
     },
 ];
 
+interface HeroSlide {
+    title: string;
+    body: string;
+    cta: string;
+    image: string;
+    imageAlt: string;
+}
+
+const heroSlides: HeroSlide[] = [
+    {
+        title: 'Trockene Wände für ein gesundes Raumklima',
+        body: 'Mit der Horizontalsperre schützen Sie Ihr Mauerwerk vor aufsteigender Feuchtigkeit und Schimmel.',
+        cta: 'Zum Produkt',
+        image: 'https://www.tobolin.de/media/71/20/f9/1776149259/banner-004-1.webp',
+        imageAlt: 'Tobolin Horizontalsperre mit Injektionstrichtern',
+    },
+    {
+        title: 'Feuchte Wände sicher erkennen',
+        body: 'Feuchtigkeitsmessgerät TOBOMETER HY: schnelle Messung, zuverlässige Werte, einfache Anwendung.',
+        cta: 'Zum Produkt',
+        image: 'https://www.tobolin.de/media/b5/4f/a4/1776149287/banner-003-1.webp',
+        imageAlt: 'TOBOMETER Feuchtigkeitsmessgerät an einer Ziegelwand',
+    },
+    {
+        title: 'Sauberes Pflaster – gepflegte Fugen.',
+        body: 'Entdecken Sie unsere Produkte für Pflaster, Steinflächen und Fugen.',
+        cta: 'Zu den Produkten',
+        image: 'https://www.tobolin.de/media/2b/5d/97/1775553680/banner-001.webp',
+        imageAlt: 'Pflaster und Fugen Produktebanner',
+    },
+    {
+        title: 'Starke Produkte zum Schutz vor Feuchtigkeit und Witterung',
+        body: 'Entdecken Sie aufeinander abgestimmte Lösungen für Sanierung, Schutz und Werterhalt rund ums Haus.',
+        cta: 'Mehr erfahren',
+        image: 'https://www.tobolin.de/media/34/f9/83/1775553683/banner-002.webp',
+        imageAlt: 'Tobolin Produktfamilie',
+    },
+];
+
+const promiseDetails = [
+    'Die Systeme stoppen kapillar aufsteigende Nässe im Mauerwerk.',
+    'Folgeschäden wie Schimmel und Salz-Ausblühungen werden vorbeugend reduziert.',
+    'Die Lösungen bewähren sich in Privathäusern, denkmalgeschützten Gebäuden und gewerblichen Objekten.',
+    'Für die Anwendung sind weder ausuferndes Fachwissen noch Spezialwerkzeug notwendig.',
+];
+
 export default function Tobolin() {
+    const [api, setApi] = useState<CarouselApi>();
+    const [selectedIndex, setSelectedIndex] = useState(0);
+    const [autoplay] = useState(() =>
+        Autoplay({ delay: 6000, stopOnInteraction: false }),
+    );
+
+    useEffect(() => {
+        if (!api) {
+            return;
+        }
+
+        const onSelect = () => setSelectedIndex(api.selectedScrollSnap());
+
+        onSelect();
+        api.on('select', onSelect);
+
+        return () => {
+            api.off('select', onSelect);
+        };
+    }, [api]);
+
     return (
         <BrandLayout
-            name="TOBOLIN"
-            field="Bauwerksabdichtung"
             title="Tobolin – Trockene Wände für ein gesundes Raumklima"
             description="Tobolin steht für zuverlässigen Feuchteschutz aus Deutschland: Horizontalsperren und Abdichtungssysteme gegen aufsteigende Feuchtigkeit im Mauerwerk."
             headerClass="bg-tobolin/90"
             accentClass="text-tobolin-accent"
+            topnav={tobolinTopnavOptions}
             footer={{
                 brandName: 'Tobolin',
                 bgClass: 'bg-tobolin',
@@ -75,8 +162,25 @@ export default function Tobolin() {
                 consultTitle: 'Persönliche Beratung',
                 consultIntro: 'per Telefon, E-Mail & WhatsApp:',
                 phone: '+49 (0)941 37847200',
-                whatsapp: '+49 (0)159 01366514',
-                email: 'tobolin@marawe.de',
+                whatsapp: "+49 (0)159 01366514",
+                socials: [
+                    {
+                        icon: Facebook,
+                        label: "Facebook",
+                        href: "https://www.facebook.com/TobolinBauChemie/",
+                    },
+                    {
+                        icon: Instagram,
+                        label: "Instagram",
+                        href: "https://www.instagram.com/tobolin_smarte_bauprodukte/",
+                    },
+                    {
+                        icon: Youtube,
+                        label: "YouTube",
+                        href: "https://www.youtube.com/channel/UCnGGnqiHOGPkKejIb9s5k7Q",
+                    },
+                ],
+                contactFormUrl: 'https://www.tobolin.de/service/kontakt/',
                 serviceLinks: [
                     { label: 'Kontakt', href: '/#kontakt' },
                     { label: 'Versand & Zahlung', href: '#' },
@@ -98,55 +202,91 @@ export default function Tobolin() {
             }}
         >
             <section className="relative bg-tobolin text-white">
-                <img
-                    src="https://images.unsplash.com/photo-1486718448742-163732cd1544?auto=format&fit=crop&w=1800&q=80"
-                    alt="Geschwungene Ziegelfassade eines modernen Bauwerks"
-                    className="absolute inset-0 size-full object-cover opacity-25"
-                    loading="eager"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-tobolin via-tobolin/70 to-tobolin/40" />
-                <div className="relative mx-auto w-full max-w-7xl px-6 pt-40 pb-24 lg:px-8 lg:pb-32">
-                    <p className="mb-4 text-xs font-semibold tracking-[0.25em] text-tobolin-accent uppercase">
-                        Tobolin · Eine Marke der MARAWE GmbH &amp; Co. KG
-                    </p>
-                    <h1 className="max-w-3xl font-display text-4xl leading-[1.05] font-bold tracking-tight text-balance sm:text-6xl">
-                        Trockene Wände für ein gesundes Raumklima.
-                    </h1>
-                    <p className="mt-6 max-w-2xl text-base text-white/80 sm:text-lg">
-                        Mit der Tobolin-Horizontalsperre schützen Sie Ihr
-                        Mauerwerk vor aufsteigender Feuchtigkeit und Schimmel –
-                        einfach in der Anwendung, dauerhaft in der Wirkung.
-                    </p>
-                    <div className="mt-9 flex flex-wrap gap-4">
-                        <Button
-                            asChild
-                            size="lg"
-                            className="bg-tobolin-accent text-white hover:bg-tobolin-accent/90"
-                        >
-                            <a href="#loesungen">
-                                Zu den Lösungen
-                                <ArrowRight data-icon="inline-end" />
-                            </a>
-                        </Button>
-                        <Button
-                            asChild
-                            size="lg"
-                            variant="outline"
-                            className="border-white/30 bg-transparent text-white hover:bg-white/10 hover:text-white"
-                        >
-                            <a
-                                href="https://www.tobolin.de/"
-                                target="_blank"
-                                rel="noopener noreferrer"
-                            >
-                                Zum Tobolin-Shop
-                            </a>
-                        </Button>
-                    </div>
+                <Carousel
+                    setApi={setApi}
+                    opts={{ loop: true }}
+                    plugins={[autoplay]}
+                    className="group"
+                >
+                    <CarouselContent className="ml-0">
+                        {heroSlides.map((slide) => (
+                            <CarouselItem key={slide.title} className="pl-0">
+                                <div className="relative flex min-h-[76svh] items-center pt-16">
+                                    <img
+                                        src={slide.image}
+                                        alt={slide.imageAlt}
+                                        className="absolute inset-0 size-full object-cover"
+                                        loading="eager"
+                                    />
+                                    <div className="relative mx-auto w-full max-w-7xl px-6 py-20 lg:px-8">
+                                        <div className="max-w-xl rounded-lg bg-white/85 p-7 shadow-xl backdrop-blur-sm lg:p-10">
+                                            <p className="mb-3 text-xs font-semibold tracking-[0.25em] text-tobolin uppercase">
+                                                Tobolin · Eine Marke der MARAWE
+                                                GmbH &amp; Co. KG
+                                            </p>
+                                            <h2 className="font-display text-3xl leading-[1.08] font-bold tracking-tight text-balance text-zinc-900 sm:text-5xl">
+                                                {slide.title}
+                                            </h2>
+                                            <p className="mt-4 text-base text-zinc-700 sm:text-lg">
+                                                {slide.body}
+                                            </p>
+                                            <div className="mt-7 flex flex-wrap gap-4">
+                                                <Button
+                                                    asChild
+                                                    size="lg"
+                                                    className="bg-tobolin text-white hover:bg-tobolin/90"
+                                                >
+                                                    <a href="#loesungen">
+                                                        {slide.cta}
+                                                        <ArrowRight data-icon="inline-end" />
+                                                    </a>
+                                                </Button>
+                                                <Button
+                                                    asChild
+                                                    size="lg"
+                                                    variant="outline"
+                                                    className="border-zinc-300 bg-transparent text-zinc-800 hover:bg-zinc-100 hover:text-zinc-900"
+                                                >
+                                                    <a
+                                                        href="https://www.tobolin.de/"
+                                                        target="_blank"
+                                                        rel="noopener noreferrer"
+                                                    >
+                                                        Zum Tobolin-Shop
+                                                    </a>
+                                                </Button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </CarouselItem>
+                        ))}
+                    </CarouselContent>
+                    <CarouselPrevious className="left-6 hidden border-tobolin/30 bg-white/70 text-tobolin opacity-0 backdrop-blur transition-opacity group-hover:opacity-100 hover:bg-white hover:text-tobolin lg:inline-flex" />
+                    <CarouselNext className="right-6 hidden border-tobolin/30 bg-white/70 text-tobolin opacity-0 backdrop-blur transition-opacity group-hover:opacity-100 hover:bg-white hover:text-tobolin lg:inline-flex" />
+                </Carousel>
+                <div className="absolute inset-x-0 bottom-8 z-10 flex justify-center gap-2.5">
+                    {heroSlides.map((slide, index) => (
+                        <button
+                            key={slide.title}
+                            type="button"
+                            onClick={() => api?.scrollTo(index)}
+                            aria-label={`Slide ${index + 1} anzeigen`}
+                            className={cn(
+                                'h-1.5 rounded-full transition-all duration-300',
+                                index === selectedIndex
+                                    ? 'w-8 bg-tobolin'
+                                    : 'w-3 bg-zinc-900/25 hover:bg-zinc-900/40',
+                            )}
+                        />
+                    ))}
                 </div>
             </section>
 
-            <section className="bg-background py-24 lg:py-32">
+            <section
+                id="horizontalsperre"
+                className="bg-secondary py-24 lg:py-32"
+            >
                 <div className="mx-auto w-full max-w-7xl px-6 lg:px-8">
                     <div className="grid items-start gap-14 lg:grid-cols-2">
                         <div>
@@ -176,6 +316,23 @@ export default function Tobolin() {
                             </p>
                         </div>
                     </div>
+                    <div className="mt-14 grid gap-4 sm:grid-cols-3">
+                        {[
+                            'Qualität aus Deutschland',
+                            'Sicher Bezahlen',
+                            'Persönlicher Kundensupport',
+                        ].map((item) => (
+                            <div
+                                key={item}
+                                className="flex items-center gap-3 rounded-lg border bg-card p-5"
+                            >
+                                <Home className="size-5 text-tobolin" />
+                                <span className="text-sm font-semibold">
+                                    {item}
+                                </span>
+                            </div>
+                        ))}
+                    </div>
                 </div>
             </section>
 
@@ -195,27 +352,66 @@ export default function Tobolin() {
                         {solutions.map((solution) => (
                             <article
                                 key={solution.title}
-                                className="rounded-xl border bg-card p-6 transition-shadow hover:shadow-lg"
+                                className="group overflow-hidden rounded-lg border bg-card transition-shadow hover:shadow-xl"
                             >
-                                <span className="mb-5 flex size-12 items-center justify-center rounded-lg bg-tobolin text-white">
-                                    <solution.icon
-                                        className="size-6"
-                                        aria-hidden
+                                <div className="relative aspect-[4/3] overflow-hidden">
+                                    <img
+                                        src={solution.image}
+                                        alt={solution.title}
+                                        className="size-full object-cover transition-transform duration-700 group-hover:scale-105"
+                                        loading="lazy"
                                     />
-                                </span>
-                                <h3 className="font-display text-lg font-bold tracking-tight">
-                                    {solution.title}
-                                </h3>
-                                <p className="mt-2 text-sm leading-relaxed text-muted-foreground">
-                                    {solution.body}
-                                </p>
+                                    <div className="absolute inset-0 bg-gradient-to-t from-tobolin/75 to-transparent" />
+                                    <span className="absolute bottom-4 left-4 flex size-11 items-center justify-center rounded-md bg-tobolin text-white shadow-lg">
+                                        <solution.icon
+                                            className="size-5"
+                                            aria-hidden
+                                        />
+                                    </span>
+                                </div>
+                                <div className="p-6">
+                                    <h3 className="font-display text-lg font-bold tracking-tight">
+                                        {solution.title}
+                                    </h3>
+                                    <p className="mt-2 text-sm leading-relaxed text-muted-foreground">
+                                        {solution.body}
+                                    </p>
+                                </div>
                             </article>
                         ))}
                     </div>
                 </div>
             </section>
 
-            <section className="bg-tobolin py-24 text-white lg:py-32">
+            <section id="videos" className="bg-secondary py-24 lg:py-32">
+                <div className="mx-auto w-full max-w-4xl px-6 lg:px-8">
+                    <div className="rounded-lg border bg-card p-8">
+                        <p className="mb-3 text-xs font-semibold tracking-[0.25em] text-tobolin uppercase dark:text-tobolin-accent">
+                            Wer steckt hinter TOBOLIN?
+                        </p>
+                        <h2 className="font-display text-3xl font-bold tracking-tight text-balance">
+                            Zuverlässiger Feuchteschutz aus Deutschland.
+                        </h2>
+                        <p className="mt-5 text-muted-foreground">
+                            Als Marke der MARAWE GmbH &amp; Co. KG entwickelt
+                            und vertreibt Tobolin hochwertige Lösungen zur
+                            Abdichtung von Mauerwerk. Der Schwerpunkt liegt auf
+                            modernen Horizontalsperren-Systemen gegen kapillar
+                            aufsteigende Feuchtigkeit sowie Sanierungslösungen
+                            bei Feuchtigkeits- und Kondensationsschäden.
+                        </p>
+                        <p className="mt-4 text-muted-foreground">
+                            Mit über 10 Jahren Erfahrung steht Tobolin für
+                            Qualität, Innovation und persönlichen Kundenservice.
+                        </p>
+                    </div>
+                </div>
+            </section>
+
+            <section
+                id="beratung"
+                className="bg-tobolin py-24 text-white lg:py-32"
+            >
                 <div className="mx-auto w-full max-w-7xl px-6 lg:px-8">
                     <div className="mb-12 max-w-2xl">
                         <p className="mb-3 text-xs font-semibold tracking-[0.25em] text-tobolin-accent uppercase">
@@ -230,9 +426,9 @@ export default function Tobolin() {
                         {promises.map((promise) => (
                             <article
                                 key={promise.title}
-                                className="rounded-xl border border-white/10 bg-white/5 p-6 lg:p-8"
+                                className="rounded-lg border border-white/10 bg-white/5 p-6 lg:p-8"
                             >
-                                <span className="mb-5 flex size-12 items-center justify-center rounded-lg bg-tobolin-accent text-white">
+                                <span className="mb-5 flex size-12 items-center justify-center rounded-md bg-tobolin-accent text-white">
                                     <promise.icon
                                         className="size-6"
                                         aria-hidden
@@ -252,6 +448,52 @@ export default function Tobolin() {
                         Deutschland – TÜV-zertifizierter Kundenservice, TOBOLIN
                         ist eine Marke der MARAWE-Gruppe.
                     </p>
+                    <div className="mt-8 grid gap-3 sm:grid-cols-2">
+                        {promiseDetails.map((detail) => (
+                            <div
+                                key={detail}
+                                className="rounded-md border border-white/10 bg-white/5 p-4 text-sm text-white/75"
+                            >
+                                {detail}
+                            </div>
+                        ))}
+                    </div>
+                </div>
+            </section>
+
+            <section className="bg-background py-24 lg:py-32">
+                <div className="mx-auto grid w-full max-w-7xl gap-10 px-6 lg:grid-cols-[0.95fr_1.05fr] lg:px-8">
+                    <div>
+                        <p className="mb-3 text-xs font-semibold tracking-[0.25em] text-tobolin uppercase dark:text-tobolin-accent">
+                            Qualität
+                        </p>
+                        <h2 className="font-display text-3xl font-bold tracking-tight text-balance sm:text-5xl">
+                            Qualität, auf die Sie sich verlassen können!
+                        </h2>
+                    </div>
+                    <div className="space-y-4 text-muted-foreground">
+                        <p>
+                            Ihr Zuhause hat einen besonderen Wert – für Sie und
+                            Ihre Familie. Genau deshalb wurde die
+                            Horizontalsperre mit größter Sorgfalt entwickelt.
+                        </p>
+                        <p>
+                            Tobolin bietet innovative Systemlösungen und steht
+                            persönlich für die Qualität der Produkte ein.
+                            Zugleich bleibt die Marke eng mit der MARAWE-Gruppe
+                            verbunden.
+                        </p>
+                        <Button
+                            asChild
+                            size="lg"
+                            className="bg-tobolin text-white hover:bg-tobolin/90"
+                        >
+                            <a href="https://www.tobolin.de/service/kontakt/">
+                                Jetzt Kontakt aufnehmen
+                                <ArrowRight data-icon="inline-end" />
+                            </a>
+                        </Button>
+                    </div>
                 </div>
             </section>
         </BrandLayout>
